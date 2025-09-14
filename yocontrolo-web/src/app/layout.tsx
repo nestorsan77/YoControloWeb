@@ -43,13 +43,13 @@ export const metadata = {
     creator: '@yocontrolo',
   },
   icons: {
-  icon: '/images/YoControlo.ico',
-  apple: '/images/YoControlo.png',
-  other: [
-    { rel: 'icon', url: '/images/YoControlo.png', sizes: '192x192' },
-    { rel: 'icon', url: '/images/YoControlo.png', sizes: '512x512' },
-  ],
-},
+    icon: '/images/YoControlo.ico',
+    apple: '/images/YoControlo.png',
+    other: [
+      { rel: 'icon', url: '/images/YoControlo.png', sizes: '192x192' },
+      { rel: 'icon', url: '/images/YoControlo.png', sizes: '512x512' },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -58,11 +58,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className="scroll-smooth">
       <Head>
+        {/* Google Site Verification */}
         <meta
           name="google-site-verification"
           content="sp4rNgkbygN1SS6c-TvUrIgB2IazXvINNGP2KbIQeYo"
         />
+        {/* Aquí puedes agregar cualquier meta adicional si hace falta */}
       </Head>
+
       <body className="bg-white dark:bg-[var(--background)] text-gray-900 dark:text-[var(--foreground)] font-sans antialiased transition-colors duration-500">
         {/* Google Analytics */}
         {GA_ID && (
@@ -91,4 +94,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
-
