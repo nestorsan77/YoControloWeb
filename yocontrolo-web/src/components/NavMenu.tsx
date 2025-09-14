@@ -86,7 +86,7 @@ const toggleTheme = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden transition-all duration-300 ${isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden bg-[var(--background)]`}
+          className={`md:hidden transition-all duration-300 ${isOpen ? 'max-h-104 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden bg-[var(--background)]`}
         >
           <ul className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 dark:border-gray-700">
             {menuItems.map(({ name, href, icon: Icon }) => (
