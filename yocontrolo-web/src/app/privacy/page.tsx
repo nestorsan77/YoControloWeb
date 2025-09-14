@@ -408,86 +408,87 @@ const PrivacyPolicy = () => {
                 </div>
               </div>
             </section>
-
-            {/* Contacto */}
-            <section id="contacto" className="scroll-mt-8">
-              <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Contacto y Soporte</h2>
-                </div>
-                
-                <div className="space-y-6">
-                  <p className="text-lg text-gray-700 dark:text-gray-300">
-                    Para cualquier consulta sobre esta política de privacidad o ejercicio de tus derechos:
-                  </p>
-                  
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div className="space-y-4">
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Datos de Contacto</h3>
-                      
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3">
-                          <Mail className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                          <div>
-                            <p className="font-medium text-gray-900 dark:text-white">Email de Privacidad</p>
-                            <p className="text-gray-600 dark:text-gray-400">privacidad@yocontrolo.app</p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center gap-3">
-                          <Phone className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                          <div>
-                            <p className="font-medium text-gray-900 dark:text-white">Soporte Técnico</p>
-                            <p className="text-gray-600 dark:text-gray-400">soporte@yocontrolo.app</p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start gap-3">
-                          <MapPin className="w-5 h-5 text-gray-500 dark:text-gray-400 mt-1" />
-                          <div>
-                            <p className="font-medium text-gray-900 dark:text-white">Dirección</p>
-                            <p className="text-gray-600 dark:text-gray-400">
-                              YoControlo SL<br />
-                              Calle de la Privacidad, 123<br />
-                              28001 Madrid, España
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Tiempos de Respuesta</h3>
-                      
-                      <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                        <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                          <li className="flex items-center gap-3">
-                            <Calendar className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                            <span><strong>Consultas generales:</strong> 24-48 horas</span>
-                          </li>
-                          <li className="flex items-center gap-3">
-                            <Calendar className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                            <span><strong>Ejercicio de derechos GDPR:</strong> Máximo 30 días</span>
-                          </li>
-                          <li className="flex items-center gap-3">
-                            <Calendar className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                            <span><strong>Incidentes de seguridad:</strong> Inmediato</span>
-                          </li>
-                        </ul>
-                      </div>
-                      
-                      <div className="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 p-4 rounded-r-lg">
-                        <p className="text-green-700 dark:text-green-300 text-sm">
-                          <strong>Compromiso:</strong> Todas las consultas sobre privacidad tienen prioridad máxima 
-                          y son atendidas por nuestro equipo especializado.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+{/* Contacto */}
+<section id="contacto" className="scroll-mt-8">
+  <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8">
+    <div className="flex items-center gap-3 mb-6">
+      <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+      <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Contacto y Soporte</h2>
+    </div>
+    
+    <div className="space-y-6">
+      <p className="text-lg text-gray-700 dark:text-gray-300">
+        Para cualquier consulta sobre la privacidad de tus datos o sobre el uso de la web, 
+        puedes ponerte en contacto directamente conmigo, el desarrollador y responsable del sitio.
+      </p>
+      
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="space-y-4">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Datos de Contacto</h3>
+          
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <Mail className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+              <div>
+                <p className="font-medium text-gray-900 dark:text-white">Email de Privacidad</p>
+                <p className="text-gray-600 dark:text-gray-400">privacidad@yocontrolo.net</p>
               </div>
-            </section>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <Phone className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+              <div>
+                <p className="font-medium text-gray-900 dark:text-white">Soporte Técnico</p>
+                <p className="text-gray-600 dark:text-gray-400">soporte@yocontrolo.net</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-3">
+              <MapPin className="w-5 h-5 text-gray-500 dark:text-gray-400 mt-1" />
+              <div>
+                <p className="font-medium text-gray-900 dark:text-white">Responsable</p>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Este sitio es desarrollado y mantenido por un único programador.<br />
+                  No hay empresa registrada detrás del dominio.<br />
+                  YoControlo.net
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="space-y-4">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Tiempos de Respuesta</h3>
+          
+          <div className="bg-white dark:bg-gray-900 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+            <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+              <li className="flex items-center gap-3">
+                <Calendar className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                <span><strong>Consultas generales:</strong> 24-48 horas</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Calendar className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                <span><strong>Ejercicio de derechos GDPR:</strong> Máximo 30 días</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Calendar className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                <span><strong>Incidentes de seguridad:</strong> Inmediato</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 p-4 rounded-r-lg">
+            <p className="text-green-700 dark:text-green-300 text-sm">
+              <strong>Compromiso:</strong> Todas las consultas sobre privacidad son atendidas con prioridad, 
+              y serán gestionadas directamente por el responsable del sitio.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
             {/* Cambios en la Política */}
             <section className="scroll-mt-8">

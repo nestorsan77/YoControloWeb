@@ -142,10 +142,14 @@ const GestionFinanzasPersonales = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg">
+                <a href="https://app.yocontrolo.net">
                 Probar Gratis Ahora →
+                </a>
               </button>
               <button className="px-8 py-4 bg-white dark:bg-gray-800 border-2 border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-xl font-bold text-lg transition-all">
-                Ver Demo en Vivo
+                <a href="https://app.yocontrolo.net">
+                Ver Demo en Vivo (proximamente)
+                </a>
               </button>
             </div>
             
@@ -377,10 +381,14 @@ const GestionFinanzasPersonales = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <button className="px-10 py-5 bg-white text-blue-600 rounded-xl font-bold text-xl hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl">
+              <a href="https://app.yocontrolo.net">
               🚀 Empezar Gratis Ahora
+              </a>
             </button>
             <button className="px-10 py-5 bg-white/20 hover:bg-white/30 text-white rounded-xl font-bold text-xl transition-all">
+              <a href="https://app.yocontrolo.net">
               📱 Descargar PWA
+              </a>
             </button>
           </div>
           

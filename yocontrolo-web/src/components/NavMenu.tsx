@@ -11,9 +11,11 @@ const NavMenu: React.FC = () => {
 
   const menuItems = [
     { name: 'Inicio', href: '/', icon: Home },
-    { name: 'Productos', href: '/productos', icon: ShoppingBag },
+    { name: 'Precios', href: '/precios', icon: ShoppingBag },
     { name: 'GestionFinanzasPersonales', href: '/gestion-finanzas-personales', icon: Wallet },
-    { name: 'blog', href: '/blog', icon: BookOpen },
+    { name: 'Contacto', href: '/contacto', icon: BookOpen },
+    { name: 'Sobre Nosotros', href: '/sobre-nosotros', icon: BookOpen },
+    { name: 'Blog', href: '/blog', icon: BookOpen },
   ];
 
   // Detecta modo oscuro

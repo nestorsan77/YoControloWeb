@@ -1,5 +1,6 @@
 import './globals.css';
 import ClientLayout from './ClientLayout';
+import Script from 'next/script';
 
 export const metadata = {
   title: 'YoControlo - Gestiona tus finanzas personales fácilmente',
@@ -51,12 +52,36 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
 
   return (
     <html lang="es" className="scroll-smooth">
       <body className="bg-white dark:bg-[var(--background)] text-gray-900 dark:text-[var(--foreground)] font-sans antialiased transition-colors duration-500">
+        {/* Google Analytics */}
+        {GA_ID && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            />
+            <Script
+              id="google-analytics"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${GA_ID}');
+                `,
+              }}
+            />
+          </>
+        )}
+
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
 }
+
