@@ -1,6 +1,7 @@
 import './globals.css';
 import ClientLayout from './ClientLayout';
 import Script from 'next/script';
+import Head from 'next/head';
 
 export const metadata = {
   title: 'YoControlo - Gestiona tus finanzas personales fácilmente',
@@ -56,6 +57,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="es" className="scroll-smooth">
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="sp4rNgkbygN1SS6c-TvUrIgB2IazXvINNGP2KbIQeYo"
+        />
+      </Head>
       <body className="bg-white dark:bg-[var(--background)] text-gray-900 dark:text-[var(--foreground)] font-sans antialiased transition-colors duration-500">
         {/* Google Analytics */}
         {GA_ID && (

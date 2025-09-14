@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
@@ -109,6 +109,33 @@ interface AppPreviewProps {
 }
 
 const AppPreview: React.FC<AppPreviewProps> = ({ screenshots }) => {
+  const [controlsEnabled, setControlsEnabled] = useState(true);
+  const canvasRef = useRef<HTMLDivElement>(null);
+   // Detectar doble tap para habilitar scroll
+  useEffect(() => {
+    if (!canvasRef.current) return;
+
+    let lastTap = 0;
+
+    const handleDoubleTap = (e: TouchEvent) => {
+      const currentTime = new Date().getTime();
+      const tapLength = currentTime - lastTap;
+
+      if (tapLength < 300 && tapLength > 0) {
+        // Doble tap detectado
+        setControlsEnabled((prev) => !prev); // Alterna control
+      }
+
+      lastTap = currentTime;
+    };
+
+    const canvasEl = canvasRef.current;
+    canvasEl.addEventListener('touchend', handleDoubleTap);
+
+    return () => {
+      canvasEl.removeEventListener('touchend', handleDoubleTap);
+    };
+  }, []);
   return (
     <section
       className="py-20 px-4 transition-colors duration-500 
@@ -150,6 +177,7 @@ const AppPreview: React.FC<AppPreviewProps> = ({ screenshots }) => {
             screenSpacePanning
             autoRotate
             autoRotateSpeed={5}
+            enabled={controlsEnabled}
           />
         </Canvas>
       </div>
