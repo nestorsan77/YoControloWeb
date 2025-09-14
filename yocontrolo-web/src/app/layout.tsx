@@ -2,6 +2,8 @@ import './globals.css';
 import ClientLayout from './ClientLayout';
 import Script from 'next/script';
 import Head from 'next/head';
+import { CookieConsent } from './components/CookieConsent';
+import { CookieNotification } from './components/CookieNotification';
 
 export const metadata = {
   title: 'YoControlo - Gestiona tus finanzas personales fácilmente',
@@ -90,6 +92,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
 
         <ClientLayout>{children}</ClientLayout>
+        <CookieConsent />
+        <CookieNotification />
       </body>
     </html>
   );

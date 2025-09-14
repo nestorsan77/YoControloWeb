@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://yocontrolo.net/sobre-nosotros</loc><lastmod>2025-09-14T14:18:17.868Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yocontrolo.net/terms</loc><lastmod>2025-09-14T14:18:17.869Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yocontrolo.net</loc><lastmod>2025-09-14T14:18:17.869Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yocontrolo.net/blog</loc><lastmod>2025-09-14T14:18:17.869Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yocontrolo.net/gestion-finanzas-personales</loc><lastmod>2025-09-14T14:18:17.869Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yocontrolo.net/privacy</loc><lastmod>2025-09-14T14:18:17.869Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yocontrolo.net/precios</loc><lastmod>2025-09-14T14:18:17.869Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yocontrolo.net/contacto</loc><lastmod>2025-09-14T14:18:17.869Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yocontrolo.net/contacto</loc><lastmod>2025-09-14T20:37:00.516Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yocontrolo.net/precios</loc><lastmod>2025-09-14T20:37:00.516Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yocontrolo.net/terms</loc><lastmod>2025-09-14T20:37:00.516Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yocontrolo.net</loc><lastmod>2025-09-14T20:37:00.516Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yocontrolo.net/sobre-nosotros</loc><lastmod>2025-09-14T20:37:00.516Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yocontrolo.net/privacy</loc><lastmod>2025-09-14T20:37:00.516Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yocontrolo.net/gestion-finanzas-personales</loc><lastmod>2025-09-14T20:37:00.516Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yocontrolo.net/blog</loc><lastmod>2025-09-14T20:37:00.516Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

@@ -1,13 +1,13 @@
 'use client';
 
-import CTAButton from '@/components/CTAButtons';
+import CTAButton from '@/app/components/CTAButtons';
 import { 
   Star, Zap, Shield, 
   Target, Wallet, Users, 
   CheckCircle, Clock, EyeOff, UserX
 } from 'lucide-react';
 import React, { useState } from 'react';
-import AppPreview from '@/components/AppPreview';
+import AppPreview from '@/app/components/AppPreview';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);

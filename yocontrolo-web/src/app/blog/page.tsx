@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BookOpen } from "lucide-react";
-import { blogPosts } from "@/components/BlogPosts";
+import { blogPosts } from "@/app/components/BlogPosts";
 
 export default function BlogPage() {
   return (

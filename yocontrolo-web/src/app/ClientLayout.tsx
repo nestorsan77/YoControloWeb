@@ -1,6 +1,6 @@
 "use client"
 
-import NavMenu from '@/components/NavMenu'
+import NavMenu from '@/app/components/NavMenu'
 import React, { useEffect } from 'react';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {

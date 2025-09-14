@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Tag } from "lucide-react";
-import { blogPosts, BlogPost } from "@/components/BlogPosts";
-import { generateSEO } from "@/components/SEO";
+import { blogPosts, BlogPost } from "@/app/components/BlogPosts";
+import { generateSEO } from "@/app/components/SEO";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const post = blogPosts.find((p) => p.slug === params.slug);
