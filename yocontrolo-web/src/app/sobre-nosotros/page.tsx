@@ -4,7 +4,7 @@ import React from 'react';
 import { 
   Shield, EyeOff, Heart, Users, 
   Target, Lightbulb, Code, Lock,
-  CheckCircle, Globe, Zap, UserX
+  CheckCircle, Globe, UserX
 } from 'lucide-react';
 
 const SobreNosotros = () => {

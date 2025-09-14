@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import { 
   Shield, EyeOff, Heart, Users, 
-  Mail, MessageCircle, Bug, Lightbulb,
+  Mail, MessageCircle,
   CheckCircle, Clock, Lock, AlertCircle,
-  Github, Twitter, Send, Phone, MapPin,
-  Zap, HelpCircle, Star, Code
+  Github, Send, Phone,
+  Star, Code
 } from 'lucide-react';
 
 const ContactoAppFinanzasPrivadas = () => {

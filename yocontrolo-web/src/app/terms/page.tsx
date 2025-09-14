@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Shield, FileText, Scale, AlertTriangle, CheckCircle, Clock, Users, Gavel, Ban, Zap, Mail, Phone, MapPin, Calendar, Lock, Eye, Server } from 'lucide-react';
+import { Shield, FileText, Scale, AlertTriangle, CheckCircle, Clock, Users, Gavel, Ban, Zap, Mail, MapPin, Lock, Eye, Server } from 'lucide-react';
 
 const TermsOfService = () => {
   const [activeSection, setActiveSection] = useState('');

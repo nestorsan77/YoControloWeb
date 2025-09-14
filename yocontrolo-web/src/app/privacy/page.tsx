@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { Shield, Eye, Lock, Server, Cookie, FileText, Calendar, Mail, Phone, MapPin, AlertTriangle, CheckCircle } from 'lucide-react';
 
 const PrivacyPolicy = () => {
