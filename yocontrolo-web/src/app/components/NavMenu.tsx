@@ -1,112 +1,109 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Home,  ShoppingBag, Moon, Sun, Wallet, BookOpen } from 'lucide-react';
-import Hamburger from './Hamburger';
-import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
+import { Check, ChevronDown, Globe2, LogIn, Menu, Moon, Sun, X } from 'lucide-react';
+import Brand from './Brand';
+import { commonMessages, type Locale } from '../i18n';
+import { saveLocalePreference } from '../actions/locale';
 
-const NavMenu: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const menuItems = [
-    { name: 'Inicio', href: '/', icon: Home },
-    { name: 'Precios', href: '/precios', icon: ShoppingBag },
-    { name: 'GestionFinanzasPersonales', href: '/gestion-finanzas-personales', icon: Wallet },
-    { name: 'Contacto', href: '/contacto', icon: BookOpen },
-    { name: 'Sobre Nosotros', href: '/sobre-nosotros', icon: BookOpen },
-    { name: 'Blog', href: '/blog', icon: BookOpen },
+export default function NavMenu({ locale }: { locale: Locale }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const [languageOpen, setLanguageOpen] = useState(false);
+  const [dark, setDark] = useState(false);
+  const languageControlRef = useRef<HTMLDivElement>(null);
+  const messages = commonMessages[locale];
+  const links = [
+    { label: messages.home, href: '/' },
+    { label: messages.product, href: '/gestion-finanzas-personales' },
+    { label: messages.pricing, href: '/precios' },
+    { label: messages.about, href: '/sobre-nosotros' },
+    { label: messages.blog, href: '/blog' },
+    { label: messages.help, href: '/contacto' },
   ];
 
-  // Detecta modo oscuro
-  const isDark = typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
+  useEffect(() => {
+    const cookieTheme = document.cookie.match(/(?:^|; )theme=(dark|light)/)?.[1];
+    const nextDark = cookieTheme ? cookieTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('dark', nextDark);
+    const frame = window.requestAnimationFrame(() => setDark(nextDark));
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
 
-const toggleTheme = () => {
-  if (typeof document !== 'undefined') {
-    const html = document.documentElement;
-    html.classList.toggle('dark');
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        setLanguageOpen(false);
+      }
+    };
+    const closeOnOutsidePress = (event: PointerEvent) => {
+      if (!languageControlRef.current?.contains(event.target as Node)) setLanguageOpen(false);
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    document.addEventListener('pointerdown', closeOnOutsidePress);
+    return () => {
+      window.removeEventListener('keydown', closeOnEscape);
+      document.removeEventListener('pointerdown', closeOnOutsidePress);
+    };
+  }, []);
 
-    const theme = html.classList.contains('dark') ? 'dark' : 'light';
-
-    // Guardar en localStorage (opcional)
-    localStorage.setItem('theme', theme);
-
-    // Guardar en cookie por 10 años
-    const expires = new Date();
-    expires.setFullYear(expires.getFullYear() + 10);
-    document.cookie = `theme=${theme}; expires=${expires.toUTCString()}; path=/; SameSite=Lax`;
+  function toggleTheme() {
+    const next = !dark;
+    setDark(next);
+    document.documentElement.classList.toggle('dark', next);
+    document.cookie = `theme=${next ? 'dark' : 'light'}; max-age=315360000; path=/; SameSite=Lax`;
   }
-};
 
+  async function selectLocale(nextLocale: Locale) {
+    setLanguageOpen(false);
+    if (nextLocale === locale) return;
+    setOpen(false);
+    await saveLocalePreference(nextLocale);
+    router.refresh();
+  }
 
   return (
-    <header>
-      <nav
-        aria-label="Menú principal"
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[var(--background)]/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <Link href="/" aria-label="Ir a inicio" className="flex-shrink-0 flex items-center">
-              <Image src="/images/dinero.png" alt="Logo YoControlo" width={32} height={32} className="h-8 w-8 mr-2" />
-              <h1 className="text-2xl font-bold gradient-text">YoControlo</h1>
+    <header className="yc-site-header">
+      <nav className="yc-site-nav" aria-label={messages.navigation}>
+        <Brand locale={locale} />
+        <div className={`yc-site-links ${open ? 'is-open' : ''}`}>
+          {links.map((link) => (
+            <Link key={link.href} href={link.href} className={pathname === link.href ? 'is-active' : ''} onClick={() => { setOpen(false); setLanguageOpen(false); }}>
+              {link.label}
             </Link>
-
-            {/* Desktop Menu */}
-            <ul className="hidden md:flex ml-10 space-x-8">
-              {menuItems.map(({ name, href, icon: Icon }) => (
-                <li key={name}>
-                  <Link
-                    href={href}
-                    title={name}
-                    className="group flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-[var(--foreground)] hover:text-white hover:bg-gray-800 dark:hover:bg-gray-700"
-                  >
-                    <Icon className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                    <span>{name}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            {/* Theme Toggle + Hamburger */}
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={toggleTheme}
-                aria-label="Cambiar tema"
-                className="p-2 rounded-lg transition-all duration-200 text-[var(--foreground)] hover:scale-110 hover:bg-gray-200 dark:hover:bg-gray-800"
-              >
-                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              </button>
-
-              <Hamburger isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
-            </div>
-          </div>
+          ))}
+          <Link className="yc-button yc-button-secondary yc-nav-login" href="https://app.yocontrolo.net/" onClick={() => setOpen(false)}><LogIn />{messages.login}</Link>
+          <Link className="yc-button yc-button-primary yc-nav-cta" href="https://app.yocontrolo.net/" onClick={() => setOpen(false)}>{messages.signup}</Link>
         </div>
-
-        {/* Mobile Menu */}
-        <div
-          className={`md:hidden transition-all duration-300 ${isOpen ? 'max-h-104 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden bg-[var(--background)]`}
-        >
-          <ul className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 dark:border-gray-700">
-            {menuItems.map(({ name, href, icon: Icon }) => (
-              <li key={name}>
-                <Link
-                  href={href}
-                  title={name}
-                  className="group flex items-center space-x-3 px-3 py-3 rounded-lg text-base font-medium text-[var(--foreground)] hover:text-white hover:bg-gray-800 dark:hover:bg-gray-700"
-                  onClick={() => setIsOpen(false)}
-                >
-                  <Icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                  <span>{name}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className="yc-nav-tools">
+          <div className="yc-language-control" ref={languageControlRef}>
+            <button type="button" className="yc-language-switch" onClick={() => { setLanguageOpen((value) => !value); setOpen(false); }} aria-label={messages.chooseLanguage} aria-haspopup="menu" aria-expanded={languageOpen}>
+              <Globe2 /><span>{messages.languageShort}</span><ChevronDown className={languageOpen ? 'is-open' : ''} />
+            </button>
+            {languageOpen && <div className="yc-language-menu" role="menu" aria-label={messages.chooseLanguage}>
+              <div className="yc-language-menu-title"><Globe2/><span><small>YoControlo</small><strong>{messages.languageTitle}</strong></span></div>
+              {([['es', messages.spanish], ['en', messages.english]] as const).map(([code, label]) => {
+                const selected = locale === code;
+                return <button key={code} type="button" role="menuitemradio" aria-checked={selected} onClick={() => selectLocale(code)} className={selected ? 'is-selected' : ''}>
+                  <span className="yc-language-code">{code.toUpperCase()}</span>
+                  <span className="yc-language-name"><strong>{label}</strong><small>{selected ? messages.selectedLanguage : code === 'es' ? 'Spanish' : 'English'}</small></span>
+                  {selected && <Check />}
+                </button>;
+              })}
+            </div>}
+          </div>
+          <button type="button" onClick={toggleTheme} aria-label={dark ? messages.lightMode : messages.darkMode}>
+            {dark ? <Sun /> : <Moon />}
+          </button>
+          <button type="button" className="yc-menu-toggle" onClick={() => { setOpen((value) => !value); setLanguageOpen(false); }} aria-expanded={open} aria-label={open ? messages.closeMenu : messages.openMenu}>
+            {open ? <X /> : <Menu />}
+          </button>
         </div>
       </nav>
     </header>
   );
-};
-
-export default NavMenu;
+}

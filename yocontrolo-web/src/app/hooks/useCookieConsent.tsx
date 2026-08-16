@@ -1,5 +1,6 @@
-"use client";
-import { useState, useEffect } from 'react';
+'use client';
+
+import { useMemo, useSyncExternalStore } from 'react';
 
 export interface CookiePreferences {
   necessary: boolean;
@@ -14,75 +15,64 @@ export interface CookieConsent {
   version: string;
 }
 
-export const useCookieConsent = () => {
-  const [consent, setConsent] = useState<CookieConsent | null>(null);
-  const [hasConsent, setHasConsent] = useState(false);
+const STORAGE_KEY = 'yocontrolo-cookie-consent';
+const CONSENT_EVENT = 'yocontrolo:cookie-consent';
+const PENDING_SNAPSHOT = '__pending__';
 
-  useEffect(() => {
-    const savedConsent = localStorage.getItem('yocontrolo-cookie-consent');
-    if (savedConsent) {
-      try {
-        const parsedConsent = JSON.parse(savedConsent);
-        setConsent(parsedConsent);
-        setHasConsent(true);
-        
-        // Activar servicios basados en las preferencias
-        activateServices(parsedConsent.preferences);
-      } catch (error) {
-        console.error('Error parsing cookie consent:', error);
-        localStorage.removeItem('yocontrolo-cookie-consent');
-      }
-    }
-  }, []);
-
-  const activateServices = (preferences: CookiePreferences) => {
-    // Google Analytics
-    if (preferences.analytics && window.gtag) {
-      window.gtag('consent', 'update', {
-        'analytics_storage': 'granted'
-      });
-    }
-
-    // Aquí puedes agregar más servicios
-    if (preferences.marketing) {
-      // Activar píxeles de marketing, etc.
-    }
-
-    if (preferences.personalization) {
-      // Activar servicios de personalización
-    }
+function subscribe(onStoreChange: () => void) {
+  window.addEventListener(CONSENT_EVENT, onStoreChange);
+  window.addEventListener('storage', onStoreChange);
+  return () => {
+    window.removeEventListener(CONSENT_EVENT, onStoreChange);
+    window.removeEventListener('storage', onStoreChange);
   };
+}
 
-  const updateConsent = (preferences: CookiePreferences) => {
-    const newConsent: CookieConsent = {
-      preferences,
+function getSnapshot() {
+  return window.localStorage.getItem(STORAGE_KEY) ?? '';
+}
+
+function getServerSnapshot() {
+  return PENDING_SNAPSHOT;
+}
+
+function activateServices(preferences: CookiePreferences) {
+  window.gtag?.('consent', 'update', {
+    analytics_storage: preferences.analytics ? 'granted' : 'denied',
+  });
+}
+
+function parseConsent(raw: string): CookieConsent | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as CookieConsent;
+    return parsed?.preferences?.necessary ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+export function useCookieConsent() {
+  const rawConsent = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const consent = useMemo(() => parseConsent(rawConsent), [rawConsent]);
+  const isReady = rawConsent !== PENDING_SNAPSHOT;
+
+  function updateConsent(preferences: CookiePreferences) {
+    const nextConsent: CookieConsent = {
+      preferences: { ...preferences, necessary: true },
       timestamp: new Date().toISOString(),
-      version: '1.0'
+      version: '1.0',
     };
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextConsent));
+    activateServices(nextConsent.preferences);
+    window.dispatchEvent(new Event(CONSENT_EVENT));
+  }
 
-    localStorage.setItem('yocontrolo-cookie-consent', JSON.stringify(newConsent));
-    setConsent(newConsent);
-    setHasConsent(true);
-    activateServices(preferences);
-  };
+  function revokeConsent() {
+    window.localStorage.removeItem(STORAGE_KEY);
+    activateServices({ necessary: true, analytics: false, marketing: false, personalization: false });
+    window.dispatchEvent(new Event(CONSENT_EVENT));
+  }
 
-  const revokeConsent = () => {
-    localStorage.removeItem('yocontrolo-cookie-consent');
-    setConsent(null);
-    setHasConsent(false);
-    
-    // Desactivar servicios
-    if (window.gtag) {
-      window.gtag('consent', 'update', {
-        'analytics_storage': 'denied'
-      });
-    }
-  };
-
-  return {
-    consent,
-    hasConsent,
-    updateConsent,
-    revokeConsent
-  };
-};
+  return { consent, hasConsent: consent !== null, isReady, updateConsent, revokeConsent };
+}

@@ -22,6 +22,9 @@
 
 # misc
 .DS_Store
+*.key
+*.p12
+*.pfx
 *.pem
 
 # debug
@@ -30,11 +33,13 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# local environment and credentials
+.env
+.env.*
+!.env.example
 
 # vercel
-.vercel
+.vercel/
 
 # typescript
 *.tsbuildinfo

@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://yocontrolo.net
-
-# Sitemaps
-Sitemap: https://yocontrolo.net/sitemap.xml

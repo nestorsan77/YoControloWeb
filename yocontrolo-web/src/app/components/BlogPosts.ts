@@ -9,18 +9,42 @@ export interface BlogPost {
   readTime?: string;
   tags?: string[];
   content?: string;
+  titleEn?: string;
+  dateEn?: string;
+  excerptEn?: string;
+  contentEn?: string;
 }
 
 export const blogPosts: BlogPost[] = [
  {
     title: "Cómo controlar tus gastos sin depender del banco",
+    titleEn: "How to track your spending without relying on your bank",
     slug: "controlar-gastos-sin-banco",
     date: "13 de septiembre, 2025",
+    dateEn: "13 September 2025",
     excerpt: "Técnicas prácticas y privacidad: aprende a registrar y controlar tus gastos diarios usando efectivo, sobres, plantillas y herramientas offline.",
+    excerptEn: "Practical, privacy-friendly ways to track daily spending with cash, envelopes, templates and offline tools.",
     image: "/images/blog/controlar-gastos.jpg",
     author: "YoControlo",
     readTime: "8 min",
     tags: ["presupuesto", "ahorro", "privacidad", "efectivo"],
+    contentEn: `
+      <p><strong>Summary:</strong> You can regain control and privacy by using a simple envelope system, a daily spending log and a short weekly review. The best system is the one you can keep using consistently.</p>
+      <h2>Why track spending without connecting a bank?</h2>
+      <p>Bank connections can be convenient, but they also share sensitive information with another provider. A manual record lets you decide exactly which data exists and makes every purchase more visible.</p>
+      <h2>A minimal setup</h2>
+      <ul><li>A notebook, local spreadsheet or expense app.</li><li>Simple categories such as food, transport, leisure and savings.</li><li>Two minutes each day and a short weekly review.</li><li>An encrypted backup if you store the data digitally.</li></ul>
+      <h2>The envelope method</h2>
+      <p>Assign a monthly amount to each category. Every purchase comes out of the matching envelope, whether that envelope is physical or digital. When it is empty, spending in that category stops until the next period.</p>
+      <h2>Record each expense quickly</h2>
+      <p>Save the date, category, amount, payment method and a short note. Keeping the format small matters more than building a perfect spreadsheet.</p>
+      <h2>Review weekly, close monthly</h2>
+      <ol><li>Check for missing or unusual expenses.</li><li>Compare totals with your limits.</li><li>Adjust next month based on what actually happened.</li></ol>
+      <h2>Security and privacy</h2>
+      <p>Protect your device, use strong authentication and keep backups encrypted. Avoid sharing full statements or receipts when a smaller amount of information is enough.</p>
+      <h2>Conclusion</h2>
+      <p>Start small: a two-minute daily log and one weekly review can provide a useful view of your money without handing over bank credentials. YoControlo is designed for this kind of deliberate, manual control.</p>
+    `,
     content: `
       <p><strong>Resumen (TL;DR):</strong> Puedes recuperar control y privacidad sobre tus finanzas usando métodos sencillos como el sistema de sobres, un registro diario de gastos, revisiones semanales y herramientas que funcionan offline o guardan los datos localmente. Este artículo te guía paso a paso, incluye plantillas prácticas y recomendaciones de herramientas.</p>
 
@@ -132,11 +156,19 @@ date,category,amount,method,tag,notes
   },
   {
     title: "Ahorrar con objetivos claros: guía práctica",
+    titleEn: "Saving with clear goals: a practical guide",
     slug: "ahorrar-objetivos-practica",
     date: "10 de septiembre, 2025",
+    dateEn: "10 September 2025",
     excerpt: "Descubre cómo establecer metas financieras realistas y alcanzables para optimizar tu ahorro mensual...",
+    excerptEn: "Learn how to set realistic, achievable financial goals and improve your monthly saving routine.",
     image: "/images/blog/ahorrar-objetivos.jpg",
     author: "YoControlo",
+    contentEn: `
+      <p>Clear goals make saving easier to understand and maintain.</p>
+      <ul><li>Set a specific monthly and yearly target.</li><li>Track progress with a simple visual.</li><li>Review the target when your circumstances change.</li></ul>
+      <p>A realistic plan is more valuable than an ambitious target you cannot sustain. Start with a comfortable amount, automate the habit where possible and review progress every month.</p>
+    `,
     content: `
       <p>Establecer metas financieras claras es clave para ahorrar. En esta guía aprenderás:</p>
       <ul class="list-disc pl-5 my-4">

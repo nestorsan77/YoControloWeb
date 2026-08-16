@@ -1,32 +1,33 @@
 {
   "name": "yocontrolo-web",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "private": true,
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
-    "postbuild": "next-sitemap",
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --test scripts/verify-brand-system.mjs scripts/verify-delivery-config.mjs",
+    "test:smoke": "node scripts/smoke-production.mjs",
+    "test:deployment": "node scripts/verify-deployment.mjs",
+    "verify": "npm run test && npm run lint && npm run build && npm run test:smoke"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.6",
-    "@react-three/fiber": "^9.3.0",
     "lucide-react": "^0.544.0",
-    "next": "15.5.3",
-    "next-sitemap": "^4.2.3",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "three": "^0.180.0"
+    "next": "^16.3.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.5.3",
+    "eslint-config-next": "^16.3.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
