@@ -4,11 +4,12 @@ import Link from 'next/link';
 import { ArrowRight, BookOpen, Clock } from 'lucide-react';
 import { blogPosts } from '../components/BlogPosts';
 import PageHero from '../components/PageHero';
+import '../components/spending-guide.css';
 import { getLocale } from '../i18n.server';
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
-  return locale === 'es' ? { title: 'Blog', description: 'Ideas prácticas para entender tus gastos, organizar varias cuentas y tomar decisiones financieras con calma.' } : { title: 'Blog', description: 'Practical ideas for understanding spending, organising several accounts and making calmer financial decisions.' };
+  return locale === 'es' ? { title: 'Blog', alternates: { canonical: '/blog' }, description: 'Ideas prácticas para entender tus gastos, organizar varias cuentas y tomar decisiones financieras con calma.' } : { title: 'Blog', alternates: { canonical: '/blog' }, description: 'Practical ideas for understanding spending, organising several accounts and making calmer financial decisions.' };
 }
 
 export default async function BlogPage() {

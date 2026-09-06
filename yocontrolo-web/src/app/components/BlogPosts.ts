@@ -3,6 +3,12 @@ export interface BlogPost {
   title: string;
   slug: string;
   date: string;
+  publishedAt?: string;
+  seoTitle?: string;
+  seoTitleEn?: string;
+  imageAlt?: string;
+  imageAltEn?: string;
+  layout?: 'spending-guide';
   excerpt: string;
   image?: string;
   author?: string;
@@ -16,6 +22,24 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    title: "Gastos hormiga: pequeños gastos, grandes sumas.",
+    titleEn: "Small expenses. Bigger than you think.",
+    seoTitle: "Gastos hormiga: ejemplos y calculadora de gastos",
+    seoTitleEn: "Small expenses: examples and a spending calculator",
+    slug: "gastos-hormiga-como-controlarlos",
+    date: "6 de septiembre, 2026",
+    dateEn: "6 September 2026",
+    publishedAt: "2026-09-06T00:00:00.000Z",
+    excerpt: "Descubre qué son los gastos hormiga, calcula cuánto suman tus compras y suscripciones y prueba un reto de 7 días para controlarlos con YoControlo.",
+    excerptEn: "Find out how small expenses add up, calculate your purchases and subscriptions, and try a 7-day challenge to track spending with YoControlo.",
+    image: "/images/blog/gastos-hormiga-portada.webp",
+    imageAlt: "Café, compras, suscripciones y monedas: los pequeños gastos cotidianos que se acumulan.",
+    imageAltEn: "Coffee, purchases, subscriptions and coins: small everyday expenses that add up.",
+    author: "YoControlo",
+    readTime: "6 min",
+    layout: "spending-guide",
+  },
  {
     title: "Cómo controlar tus gastos sin depender del banco",
     titleEn: "How to track your spending without relying on your bank",
