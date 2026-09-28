@@ -6,6 +6,7 @@ const htmlRoutes = [
   '/precios',
   '/sobre-nosotros',
   '/blog',
+  '/blog/cuentas-y-tarjetas-en-un-solo-lugar',
   '/blog/controlar-gastos-sin-banco',
   '/blog/ahorrar-objetivos-practica',
   '/contacto',

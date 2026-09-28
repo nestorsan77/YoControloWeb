@@ -1,5 +1,13 @@
 # Historial de cambios
 
+## 1.2.1 — 2026-09-28
+
+### Cuentas centralizadas y automatización
+
+- Publicado un artículo bilingüe sobre cómo reunir cuentas, tarjetas, efectivo y movimientos en una vista clara sin mezclar saldos ni conectar credenciales bancarias.
+- Explicada la automatización de Apple Wallet con Atajos para registrar pagos compatibles sin introducirlos a mano, con sus límites de asignación por cuenta y privacidad.
+- Incluida la nueva entrada en las pruebas de rutas y en la comprobación de sitemap.
+
 ## 1.2.0 — 2026-08-16
 
 ### Entrega independiente y verificable
