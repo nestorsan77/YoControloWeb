@@ -83,6 +83,21 @@ test('marketing copy reflects the current client-server product', async () => {
   assert.doesNotMatch(copy, /solo en tu dispositivo/);
 });
 
+test('the centralised accounts article explains Apple Wallet automation accurately in both languages', async () => {
+  const [posts, smokeChecks] = await Promise.all([
+    read('src/app/components/BlogPosts.ts'),
+    read('scripts/site-checks.mjs'),
+  ]);
+
+  assert.match(posts, /slug: 'cuentas-y-tarjetas-en-un-solo-lugar'/);
+  assert.match(posts, /contentEn:/);
+  assert.match(posts, /sin apuntarlos a mano/);
+  assert.match(posts, /para cada cuenta/);
+  assert.match(posts, /hora de recepción/);
+  assert.match(posts, /app\.yocontrolo\.net\/settings\/integraciones/);
+  assert.match(smokeChecks, /blog\/cuentas-y-tarjetas-en-un-solo-lugar/);
+});
+
 test('analytics remains behind explicit consent', async () => {
   const [layout, analytics] = await Promise.all([
     read('src/app/layout.tsx'),
