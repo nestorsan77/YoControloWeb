@@ -70,8 +70,5 @@ jobs:
           "${{ github.event.workflow_run.head_sha }}"
           "${{ github.event.repository.id }}"
 
-      - name: Smoke-test the generated deployment URL
-        run: npm run test:deployment -- "${{ steps.deploy.outputs.url }}"
-
       - name: Verify the public domain after deployment
         run: npm run test:deployment -- https://www.yocontrolo.net

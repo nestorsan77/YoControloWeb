@@ -1,11 +1,10 @@
-import { cookies, headers } from 'next/headers';
-import { isLocale, localeFromAcceptLanguage, LOCALE_COOKIE, type Locale } from './i18n';
+import { notFound } from 'next/navigation';
+import type { Locale } from './i18n';
 
-export async function getLocale(): Promise<Locale> {
-  const cookieStore = await cookies();
-  const savedLocale = cookieStore.get(LOCALE_COOKIE)?.value;
-  if (isLocale(savedLocale)) return savedLocale;
+export type LocaleParams = { params: Promise<{ locale: string }> };
 
-  const headerStore = await headers();
-  return localeFromAcceptLanguage(headerStore.get('accept-language'));
+export async function getLocale(params: Promise<{ locale: string }>): Promise<Locale> {
+  const { locale } = await params;
+  if (locale !== 'es' && locale !== 'en') notFound();
+  return locale;
 }

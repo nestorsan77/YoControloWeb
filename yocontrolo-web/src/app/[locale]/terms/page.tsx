@@ -1,15 +1,19 @@
+import { pageMetadata } from '@/app/seo';
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from '@/app/components/LocalizedLink';
 import { Ban, CircleDollarSign, FileCheck, Mail, Scale, ShieldCheck, UserRoundCheck, Users } from 'lucide-react';
-import PageHero from '../components/PageHero';
-import { getLocale } from '../i18n.server';
+import PageHero from '@/app/components/PageHero';
+import { getLocale } from '@/app/i18n.server';
 
-export async function generateMetadata(): Promise<Metadata> { const locale = await getLocale(); return locale === 'es' ? { title: 'Términos de uso', description: 'Condiciones aplicables al acceso y uso de YoControlo.' } : { title: 'Terms of use', description: 'Terms that apply to access and use of YoControlo.' }; }
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const locale = await getLocale(params);
+  return pageMetadata('/terms', locale, locale === 'es' ? 'Términos de uso' : 'Terms of use', locale === 'es' ? 'Condiciones aplicables al acceso y uso de YoControlo.' : 'Terms that apply to access and use of YoControlo.');
+}
 
 const sections = [['servicio','El servicio'],['cuenta','Tu cuenta'],['contenido','Tus datos'],['grupos','Funciones compartidas'],['uso','Uso permitido'],['planes','Planes'],['disponibilidad','Disponibilidad'],['baja','Baja y suspensión'],['responsabilidad','Responsabilidad'],['cambios','Cambios y contacto']];
 
-export default async function TermsPage() {
-  if (await getLocale() === 'en') return <EnglishTermsPage />;
+export default async function TermsPage({ params }: { params: Promise<{ locale: string }> }) {
+  if (await getLocale(params) === 'en') return <EnglishTermsPage />;
   return <div className="yc-page">
     <PageHero eyebrow="Condiciones claras" icon={Scale} title="Reglas comprensibles para usar YoControlo." description="Estos términos definen qué ofrece el servicio, qué esperamos de cada cuenta y qué límites conviene conocer antes de utilizarlo." />
     <div className="yc-policy-layout">

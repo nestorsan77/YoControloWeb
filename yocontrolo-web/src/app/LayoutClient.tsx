@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from './components/LocalizedLink';
 import {
   ArrowRight, BellRing, CalendarClock, Check, CreditCard, Eye,
   Landmark, LockKeyhole, PiggyBank, Repeat2, ShieldCheck, Users, WalletCards,

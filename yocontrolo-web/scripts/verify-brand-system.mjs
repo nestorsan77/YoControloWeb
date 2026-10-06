@@ -51,27 +51,27 @@ test('navigation exposes the complete public information architecture', async ()
   assert.match(messages, /Choose language/);
 });
 
-test('language detection supports Spanish and English with English fallback', async () => {
+test('languages have stable URLs independent of cookies and browser headers', async () => {
   const [i18n, proxy, layout] = await Promise.all([
     read('src/app/i18n.ts'),
     read('src/proxy.ts'),
-    read('src/app/layout.tsx'),
+    read('src/app/[locale]/layout.tsx'),
   ]);
 
   assert.match(i18n, /baseLanguage === 'es'/);
   assert.match(i18n, /baseLanguage === 'en'/);
   assert.match(i18n, /return 'en'/);
-  assert.match(proxy, /accept-language/);
-  assert.match(proxy, /maxAge: 60 \* 60 \* 24 \* 365/);
+  assert.match(proxy, /path === '\/en'/);
+  assert.doesNotMatch(proxy, /accept-language|cookies\.get/);
   assert.match(layout, /<html lang=\{locale\}/);
 });
 
 test('marketing copy reflects the current client-server product', async () => {
   const [home, product, privacy, terms] = await Promise.all([
     read('src/app/LayoutClient.tsx'),
-    read('src/app/gestion-finanzas-personales/page.tsx'),
-    read('src/app/privacy/page.tsx'),
-    read('src/app/terms/page.tsx'),
+    read('src/app/[locale]/gestion-finanzas-personales/page.tsx'),
+    read('src/app/[locale]/privacy/page.tsx'),
+    read('src/app/[locale]/terms/page.tsx'),
   ]);
   const copy = [home, product, privacy, terms].join('\n').toLowerCase();
 
@@ -83,13 +83,29 @@ test('marketing copy reflects the current client-server product', async () => {
   assert.doesNotMatch(copy, /solo en tu dispositivo/);
 });
 
+test('the centralised accounts article explains Apple Wallet automation accurately in both languages', async () => {
+  const [posts, smokeChecks] = await Promise.all([
+    read('src/app/components/BlogPosts.ts'),
+    read('scripts/site-checks.mjs'),
+  ]);
+
+  assert.match(posts, /slug: 'cuentas-y-tarjetas-en-un-solo-lugar'/);
+  assert.match(posts, /contentEn:/);
+  assert.match(posts, /sin apuntarlos a mano/);
+  assert.match(posts, /para cada cuenta/);
+  assert.match(posts, /hora de recepción/);
+  assert.match(posts, /app\.yocontrolo\.net\/settings\/integraciones/);
+  assert.match(smokeChecks, /blog\/cuentas-y-tarjetas-en-un-solo-lugar/);
+});
+
 test('analytics remains behind explicit consent', async () => {
   const [layout, analytics] = await Promise.all([
-    read('src/app/layout.tsx'),
+    read('src/app/[locale]/layout.tsx'),
     read('src/app/components/Analytics.tsx'),
   ]);
 
   assert.match(layout, /<Analytics/);
   assert.match(analytics, /preferences\?\.analytics/);
-  assert.match(analytics, /yocontrolo:cookie-consent/);
+  assert.match(analytics, /useCookieConsent/);
+  assert.match(analytics, /ga-disable-/);
 });
