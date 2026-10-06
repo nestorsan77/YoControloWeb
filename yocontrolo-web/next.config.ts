@@ -11,6 +11,7 @@ const securityHeaders = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   agentRules: false,
+  experimental: { globalNotFound: true },
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   async headers() {

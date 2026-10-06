@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import Link from './LocalizedLink';
 import { Cookie, Settings, ShieldCheck } from 'lucide-react';
 import { type CookiePreferences, useCookieConsent } from '../hooks/useCookieConsent';
 import type { Locale } from '../i18n';

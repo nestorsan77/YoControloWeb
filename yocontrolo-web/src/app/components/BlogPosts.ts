@@ -3,6 +3,12 @@ export interface BlogPost {
   title: string;
   slug: string;
   date: string;
+  publishedAt?: string;
+  seoTitle?: string;
+  seoTitleEn?: string;
+  imageAlt?: string;
+  imageAltEn?: string;
+  layout?: 'spending-guide';
   excerpt: string;
   image?: string;
   author?: string;
@@ -16,6 +22,110 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+  {
+    title: 'Tus cuentas y tarjetas, en una sola visión de tu dinero',
+    titleEn: 'All your accounts and cards in one clear view of your money',
+    seoTitle: 'Centraliza tus cuentas y pagos en un solo lugar | YoControlo',
+    seoTitleEn: 'Bring your accounts and payments together | YoControlo',
+    slug: 'cuentas-y-tarjetas-en-un-solo-lugar',
+    date: '28 de septiembre, 2026',
+    dateEn: '28 September 2026',
+    publishedAt: '2026-09-28T00:00:00.000Z',
+    excerpt: 'Reúne los movimientos de tus cuentas, tarjetas y efectivo para entender mejor cuánto tienes y en qué gastas. Y con Apple Wallet y Atajos, registra automáticamente los pagos compatibles sin apuntarlos a mano.',
+    excerptEn: 'Bring your accounts, cards and cash transactions together to see what you have and where it goes. With Apple Wallet and Shortcuts, eligible payments can be recorded automatically—no manual entry.',
+    image: '/images/blog/gastos-hormiga-portada.webp',
+    imageAlt: 'Varias tarjetas de pago y monedas que representan los distintos medios de pago de una persona.',
+    imageAltEn: 'Several payment cards and coins representing the different ways one person pays.',
+    author: 'YoControlo',
+    readTime: '6 min',
+    tags: ['cuentas', 'tarjetas', 'gastos', 'Apple Wallet', 'automatización'],
+    content: `
+      <p>Pagas el supermercado con una tarjeta, una suscripción con otra, guardas parte del ahorro en otra cuenta y a veces utilizas efectivo. El problema no es tener varios medios de pago: es tener que reconstruir tu situación financiera mirando cada uno por separado.</p>
+      <p><strong>Centralizar tus movimientos en una sola aplicación te da una imagen completa:</strong> puedes revisar tus cuentas, tarjetas, efectivo, ingresos y gastos desde el mismo lugar, sin confundirlos ni perder de vista de dónde salió cada importe.</p>
+
+      <h2>Una visión común no significa mezclar tu dinero</h2>
+      <p>Cada cuenta sigue siendo independiente. Puedes mantener una tarjeta para los gastos diarios, otra para viajes y una cuenta separada para ahorrar. Lo que unificas es el registro y la consulta: puedes saber cuánto hay en cada una y revisar los movimientos con el mismo criterio.</p>
+      <p>Esto importa porque mirar solo una tarjeta o la cuenta principal ofrece una visión parcial. Los pequeños pagos repartidos entre varias tarjetas, los recibos recurrentes y el efectivo también forman parte de tu mes. Al tenerlos reunidos, es más fácil detectar suscripciones olvidadas, entender cuánto cuesta realmente una categoría y comprobar si tus gastos coinciden con lo que esperabas.</p>
+
+      <h2>Todos tus pagos, ordenados por la cuenta correcta</h2>
+      <p>En YoControlo puedes crear las cuentas que necesites y asociar cada movimiento a la tarjeta o cuenta desde la que se hizo. También puedes importar extractos para incorporar un historial, registrar efectivo y consultar los movimientos juntos o filtrados por cuenta.</p>
+      <ul class="list-disc pl-5 my-4">
+        <li><strong>Menos puntos ciegos:</strong> la vista general incluye tus distintos medios de pago.</li>
+        <li><strong>Más contexto:</strong> cada movimiento conserva su cuenta asociada, fecha, concepto e importe.</li>
+        <li><strong>Mejores revisiones:</strong> puedes comparar tus gastos y comprobar el saldo de cada cuenta.</li>
+        <li><strong>Sin entregar credenciales bancarias:</strong> no necesitas conectar tu banco para llevar el registro; puedes añadir movimientos o importar un extracto.</li>
+      </ul>
+      <p>Centralizar no significa transferir fondos, fusionar saldos ni sustituir la información oficial de tu entidad. Significa tener un registro personal más claro y poder revisar tu dinero desde una misma aplicación.</p>
+
+      <h2>Registra los pagos de Apple Wallet sin apuntarlos a mano</h2>
+      <p>Si pagas con iPhone, puedes dar un paso más: una automatización de <strong>Apple Wallet con Atajos</strong> puede enviar a YoControlo los datos que iOS facilita de una transacción —como el importe y el comercio— y crear el movimiento en la cuenta que hayas configurado. Así no tienes que abrir la app y teclear cada compra.</p>
+      <ol class="list-decimal pl-5 my-4">
+        <li>En YoControlo, crea una integración para la cuenta donde quieres registrar esos gastos.</li>
+        <li>Añade el atajo de YoControlo y crea una automatización personal de Wallet en Shortcuts.</li>
+        <li>Selecciona las tarjetas de Wallet que correspondan a esa misma cuenta y configura la automatización para ejecutarse inmediatamente.</li>
+        <li>Cuando hagas un pago compatible, el atajo enviará la información recibida y el gasto aparecerá en los movimientos de YoControlo.</li>
+      </ol>
+      <p>Si utilizas tarjetas que corresponden a cuentas diferentes, crea una integración y una automatización independientes para cada cuenta: seleccionar varias tarjetas en la misma automatización no las asigna automáticamente a cuentas distintas. La información disponible depende de lo que iOS entregue para cada pago; si Wallet no proporciona la fecha, YoControlo registra la hora de recepción. No se guardan números completos de tarjeta ni credenciales bancarias.</p>
+      <p>La configuración se realiza una vez y puedes revocar el acceso cuando quieras. La automatización actual está pensada para iPhone y Apple Wallet; Android necesitará una integración distinta.</p>
+
+      <h2>De pagos dispersos a una rutina sencilla</h2>
+      <p>El objetivo no es añadir tareas a tu día, sino quitar fricción. Reúne tus cuentas, deja que cada movimiento quede en el sitio correspondiente y consulta un resumen que tenga en cuenta el conjunto, no solo la tarjeta que utilizaste hoy. Para los pagos compatibles de Apple Wallet, configura el atajo una vez y evita registrarlos manualmente.</p>
+      <p>Empieza creando tus cuentas y eligiendo dónde registrar tus pagos. Después puedes activar la automatización desde <a href="https://app.yocontrolo.net/settings/integraciones" target="_blank" rel="noopener noreferrer">Ajustes → Integraciones</a>.</p>
+      <p><a href="https://app.yocontrolo.net" target="_blank" rel="noopener noreferrer">Abre YoControlo y reúne tus cuentas y movimientos en un solo lugar →</a></p>
+    `,
+    contentEn: `
+      <p>You pay for groceries with one card, a subscription with another, keep some savings in a separate account, and sometimes use cash. The problem is not having several ways to pay; it is having to piece together your financial picture by checking each one separately.</p>
+      <p><strong>Bringing your transactions together in one app gives you a fuller view:</strong> review accounts, cards, cash, income and spending in one place without mixing them up or losing track of where each amount came from.</p>
+
+      <h2>One overview does not mean merging your money</h2>
+      <p>Each account remains independent. You can keep one card for everyday spending, another for travel and a separate account for savings. What you bring together is the record and the overview: see the balance of each account and review transactions using the same approach.</p>
+      <p>Looking only at one card or your main account gives you a partial picture. Small purchases spread across several cards, recurring bills and cash all count toward your month. Bringing them together makes it easier to spot forgotten subscriptions, understand the true cost of a category and check whether your spending matches your expectations.</p>
+
+      <h2>Every payment, assigned to the right account</h2>
+      <p>In YoControlo, create the accounts you need and associate each transaction with the card or account used. You can also import statements to add transaction history, record cash and review everything together or filter by account.</p>
+      <ul class="list-disc pl-5 my-4">
+        <li><strong>Fewer blind spots:</strong> your overview includes the different ways you pay.</li>
+        <li><strong>More context:</strong> each transaction keeps its associated account, date, description and amount.</li>
+        <li><strong>Clearer reviews:</strong> compare spending and check the balance of each account.</li>
+        <li><strong>No bank credentials required:</strong> you can keep a record without connecting your bank by adding transactions or importing a statement.</li>
+      </ul>
+      <p>Centralising does not transfer funds, merge balances or replace your bank's official records. It gives you a clearer personal record and lets you review your money in one app.</p>
+
+      <h2>Record Apple Wallet payments without typing them in</h2>
+      <p>If you pay with an iPhone, you can go a step further: an <strong>Apple Wallet and Shortcuts</strong> automation can send YoControlo the transaction details iOS provides—such as the amount and merchant—and create the expense in the account you configured. You do not have to open the app and type every purchase.</p>
+      <ol class="list-decimal pl-5 my-4">
+        <li>In YoControlo, create an integration for the account where you want those expenses recorded.</li>
+        <li>Add the YoControlo shortcut and create a personal Wallet automation in Shortcuts.</li>
+        <li>Select the Wallet cards that belong to that same account and set the automation to run immediately.</li>
+        <li>When you make an eligible payment, the shortcut sends the received details and the expense appears in YoControlo transactions.</li>
+      </ol>
+      <p>If your cards belong to different accounts, create a separate integration and automation for each account: selecting several cards in one automation does not automatically assign them to different accounts. Available details depend on what iOS provides for each payment; if Wallet does not provide a date, YoControlo records the time it receives the transaction. Full card numbers and bank credentials are not stored.</p>
+      <p>Set it up once and revoke access whenever you want. The current automation is designed for iPhone and Apple Wallet; Android will need a separate integration.</p>
+
+      <h2>Turn scattered payments into a simple routine</h2>
+      <p>The goal is not to add more work to your day, but to remove friction. Bring your accounts together, keep each transaction in the right place and use an overview that considers the whole picture—not just the card you used today. For eligible Apple Wallet payments, set up the shortcut once and avoid recording them manually.</p>
+      <p>Start by creating your accounts and choosing where to record payments. Then enable the automation from <a href="https://app.yocontrolo.net/settings/integraciones" target="_blank" rel="noopener noreferrer">Settings → Integrations</a>.</p>
+      <p><a href="https://app.yocontrolo.net" target="_blank" rel="noopener noreferrer">Open YoControlo and bring your accounts and transactions together →</a></p>
+    `,
+  },
+  {
+    title: "Gastos hormiga: pequeños gastos, grandes sumas.",
+    titleEn: "Small expenses. Bigger than you think.",
+    seoTitle: "Gastos hormiga: ejemplos y calculadora de gastos",
+    seoTitleEn: "Small expenses: examples and a spending calculator",
+    slug: "gastos-hormiga-como-controlarlos",
+    date: "6 de septiembre, 2026",
+    dateEn: "6 September 2026",
+    publishedAt: "2026-09-06T00:00:00.000Z",
+    excerpt: "Descubre qué son los gastos hormiga, calcula cuánto suman tus compras y suscripciones y prueba un reto de 7 días para controlarlos con YoControlo.",
+    excerptEn: "Find out how small expenses add up, calculate your purchases and subscriptions, and try a 7-day challenge to track spending with YoControlo.",
+    image: "/images/blog/gastos-hormiga-portada.webp",
+    imageAlt: "Café, compras, suscripciones y monedas: los pequeños gastos cotidianos que se acumulan.",
+    imageAltEn: "Coffee, purchases, subscriptions and coins: small everyday expenses that add up.",
+    author: "YoControlo",
+    readTime: "6 min",
+    layout: "spending-guide",
+  },
  {
     title: "Cómo controlar tus gastos sin depender del banco",
     titleEn: "How to track your spending without relying on your bank",

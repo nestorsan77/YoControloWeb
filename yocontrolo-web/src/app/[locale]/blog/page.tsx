@@ -1,18 +1,20 @@
+import { pageMetadata } from '@/app/seo';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/app/components/LocalizedLink';
 import { ArrowRight, BookOpen, Clock } from 'lucide-react';
-import { blogPosts } from '../components/BlogPosts';
-import PageHero from '../components/PageHero';
-import { getLocale } from '../i18n.server';
+import { blogPosts } from '@/app/components/BlogPosts';
+import PageHero from '@/app/components/PageHero';
+import '@/app/components/spending-guide.css';
+import { getLocale } from '@/app/i18n.server';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getLocale();
-  return locale === 'es' ? { title: 'Blog', description: 'Ideas prácticas para entender tus gastos, organizar varias cuentas y tomar decisiones financieras con calma.' } : { title: 'Blog', description: 'Practical ideas for understanding spending, organising several accounts and making calmer financial decisions.' };
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const locale = await getLocale(params);
+  return pageMetadata('/blog', locale, locale === 'es' ? 'Guías de finanzas personales y control de gastos' : 'Personal finance and expense tracking guides', locale === 'es' ? 'Ideas prácticas para entender tus gastos, organizar varias cuentas y tomar decisiones financieras con calma.' : 'Practical ideas for understanding spending, organising several accounts and making calmer financial decisions.');
 }
 
-export default async function BlogPage() {
-  const locale = await getLocale();
+export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = await getLocale(params);
   const copy = locale === 'es' ? ['Ideas para tu dinero','Menos trucos. Más hábitos que puedas mantener.','Guías sencillas para construir una visión financiera útil sin depender de que un banco te explique únicamente su parte.','Guía práctica','Leer artículo'] : ['Ideas for your money','Fewer tricks. More habits you can maintain.','Simple guides for building a useful financial view without relying on one bank to explain only its part.','Practical guide','Read article'];
   return <div className="yc-page">
     <PageHero eyebrow={copy[0]} icon={BookOpen} title={copy[1]} description={copy[2]} />

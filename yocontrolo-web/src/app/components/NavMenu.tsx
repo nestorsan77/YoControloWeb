@@ -1,12 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import Link from './LocalizedLink';
 import { usePathname, useRouter } from 'next/navigation';
 import { Check, ChevronDown, Globe2, LogIn, Menu, Moon, Sun, X } from 'lucide-react';
 import Brand from './Brand';
 import { commonMessages, type Locale } from '../i18n';
-import { saveLocalePreference } from '../actions/locale';
+import { localizedPath, unlocalizedPath } from '../localized-path';
 
 export default function NavMenu({ locale }: { locale: Locale }) {
   const pathname = usePathname();
@@ -62,8 +62,7 @@ export default function NavMenu({ locale }: { locale: Locale }) {
     setLanguageOpen(false);
     if (nextLocale === locale) return;
     setOpen(false);
-    await saveLocalePreference(nextLocale);
-    router.refresh();
+    router.push(localizedPath(unlocalizedPath(pathname), nextLocale) + window.location.search + window.location.hash);
   }
 
   return (
@@ -72,7 +71,7 @@ export default function NavMenu({ locale }: { locale: Locale }) {
         <Brand locale={locale} />
         <div className={`yc-site-links ${open ? 'is-open' : ''}`}>
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className={pathname === link.href ? 'is-active' : ''} onClick={() => { setOpen(false); setLanguageOpen(false); }}>
+            <Link key={link.href} href={link.href} className={unlocalizedPath(pathname) === link.href ? 'is-active' : ''} onClick={() => { setOpen(false); setLanguageOpen(false); }}>
               {link.label}
             </Link>
           ))}
