@@ -1,12 +1,13 @@
+import { pageMetadata } from '@/app/seo';
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from '@/app/components/LocalizedLink';
 import { ArrowRight, BarChart3, BellRing, CalendarClock, Check, Landmark, ListFilter, ShieldCheck, Users, WalletCards } from 'lucide-react';
-import PageHero from '../components/PageHero';
-import { getLocale } from '../i18n.server';
+import PageHero from '@/app/components/PageHero';
+import { getLocale } from '@/app/i18n.server';
 
 const content = {
   es: {
-    metadata: ['Cómo funciona', 'Descubre cómo YoControlo organiza cuentas, movimientos, pagos recurrentes, deudas y gastos compartidos.'],
+    metadata: ['Gestión de finanzas personales sin conectar bancos', 'Descubre cómo YoControlo organiza cuentas, movimientos, pagos recurrentes, deudas y gastos compartidos.'],
     hero: ['El producto', 'Una rutina sencilla para una realidad financiera compleja.', 'YoControlo no mueve tu dinero ni necesita entrar en tus bancos. Tú mantienes el control y la aplicación te ayuda a ordenar la información.'],
     start: ['Cómo empezar', 'De cuentas dispersas a una imagen completa.'],
     steps: [['01','Crea tu visión','Añade las cuentas que quieras representar: banco diario, ahorro, inversión o efectivo.'],['02','Registra lo importante','Apunta ingresos y gastos, categorízalos y programa los movimientos que se repiten.'],['03','Decide con contexto','Consulta saldo, evolución, deudas y balances compartidos desde una única vista.']],
@@ -16,7 +17,7 @@ const content = {
     cta: ['Tu primera cuenta','Pruébalo con tus propios números.','No necesitas conectar ninguna entidad bancaria.','Abrir la app'],
   },
   en: {
-    metadata: ['How it works', 'Learn how YoControlo organises accounts, movements, recurring payments, debts and shared expenses.'],
+    metadata: ['Personal finance management without bank connections', 'Learn how YoControlo organises accounts, movements, recurring payments, debts and shared expenses.'],
     hero: ['The product', 'A simple routine for a complex financial reality.', 'YoControlo does not move your money or need access to your banks. You stay in control while the app helps organise the information.'],
     start: ['Getting started', 'From scattered accounts to one complete picture.'],
     steps: [['01','Build your view','Add the accounts you want to represent: everyday banking, savings, investments or cash.'],['02','Record what matters','Add income and expenses, categorise them and schedule recurring movements.'],['03','Decide with context','See balances, trends, debts and shared balances from one view.']],
@@ -27,10 +28,14 @@ const content = {
   },
 } as const;
 
-export async function generateMetadata(): Promise<Metadata> { const copy = content[await getLocale()]; return { title: copy.metadata[0], description: copy.metadata[1] }; }
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const locale = await getLocale(params);
+  const copy = content[locale];
+  return pageMetadata('/gestion-finanzas-personales', locale, copy.metadata[0], copy.metadata[1]);
+}
 
-export default async function ProductPage() {
-  const copy = content[await getLocale()];
+export default async function ProductPage({ params }: { params: Promise<{ locale: string }> }) {
+  const copy = content[await getLocale(params)];
   return <div className="yc-page">
     <PageHero eyebrow={copy.hero[0]} icon={Landmark} title={copy.hero[1]} description={copy.hero[2]} />
     <div className="yc-page-body">

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from './LocalizedLink';
 import { commonMessages, type Locale } from '../i18n';
 
 type BrandProps = {

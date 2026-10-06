@@ -1,8 +1,9 @@
+import { pageMetadata } from '@/app/seo';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { ArrowUpRight, Bug, HelpCircle, Lightbulb, Mail, MessageCircle, ShieldCheck } from 'lucide-react';
-import PageHero from '../components/PageHero';
-import { getLocale } from '../i18n.server';
+import PageHero from '@/app/components/PageHero';
+import { getLocale } from '@/app/i18n.server';
 
 const content = {
   es: {
@@ -19,10 +20,14 @@ const content = {
   },
 } as const;
 
-export async function generateMetadata(): Promise<Metadata> { const copy = content[await getLocale()]; return { title: copy.metadata[0], description: copy.metadata[1] }; }
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const locale = await getLocale(params);
+  const copy = content[locale];
+  return pageMetadata('/contacto', locale, copy.metadata[0], copy.metadata[1]);
+}
 
-export default async function ContactPage() {
-  const copy = content[await getLocale()];
+export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+  const copy = content[await getLocale(params)];
   return <div className="yc-page">
     <PageHero eyebrow={copy.hero[0]} icon={MessageCircle} title={copy.hero[1]} description={copy.hero[2]} />
     <div className="yc-page-body">
