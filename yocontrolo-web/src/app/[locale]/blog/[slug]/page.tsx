@@ -1,6 +1,8 @@
+import { localizedPath } from '@/app/localized-path';
+import { pageAlternates } from '@/app/seo';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/app/components/LocalizedLink';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Clock, Tag } from 'lucide-react';
 import { blogPosts } from '@/app/components/BlogPosts';
@@ -8,26 +10,26 @@ import SpendingGuide from '@/app/components/SpendingGuide';
 import { getLocale } from '@/app/i18n.server';
 import { PUBLIC_SITE_URL } from '@/app/site';
 
-type Props = { params: Promise<{ slug: string }> };
+type Props = { params: Promise<{ slug: string; locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const locale = await getLocale();
+  const locale = await getLocale(params);
   const { slug } = await params;
   const post = blogPosts.find(item => item.slug === slug);
   if (!post) return {};
   const en = locale === 'en';
   const title = en ? post.seoTitleEn || post.titleEn || post.title : post.seoTitle || post.title;
   const description = en ? post.excerptEn || post.excerpt : post.excerpt;
-  const url = `${PUBLIC_SITE_URL}/blog/${post.slug}`;
+  const url = new URL(localizedPath(`/blog/${post.slug}`, locale), PUBLIC_SITE_URL).href;
   const images = post.image ? [{ url: post.image, alt: en ? post.imageAltEn || post.imageAlt || post.title : post.imageAlt || post.title }] : undefined;
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: pageAlternates(`/blog/${post.slug}`, locale),
     openGraph: {
       title, description, url, type: 'article', siteName: 'YoControlo',
       locale: en ? 'en_GB' : 'es_ES', publishedTime: post.publishedAt,
-      authors: [`${PUBLIC_SITE_URL}/sobre-nosotros`], images,
+      authors: [new URL(localizedPath('/sobre-nosotros', locale), PUBLIC_SITE_URL).href], images,
     },
     twitter: { card: post.image ? 'summary_large_image' : 'summary', title, description, images },
   };
@@ -35,13 +37,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogArticle({ params }: Props) {
   const { slug } = await params;
-  const locale = await getLocale();
+  const locale = await getLocale(params);
   const post = blogPosts.find(item => item.slug === slug);
   if (!post) notFound();
   const title = locale === 'en' ? post.titleEn || post.title : post.title;
   const excerpt = locale === 'en' ? post.excerptEn || post.excerpt : post.excerpt;
   const content = locale === 'en' ? post.contentEn || post.content : post.content;
-  const url = `${PUBLIC_SITE_URL}/blog/${post.slug}`;
+  const url = new URL(localizedPath(`/blog/${post.slug}`, locale), PUBLIC_SITE_URL).href;
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -50,13 +52,13 @@ export default async function BlogArticle({ params }: Props) {
         headline: title, description: excerpt, inLanguage: locale,
         ...(post.publishedAt ? { datePublished: post.publishedAt } : {}),
         ...(post.image ? { image: [new URL(post.image, PUBLIC_SITE_URL).href] } : {}),
-        author: { '@type': 'Organization', name: post.author || 'YoControlo', url: `${PUBLIC_SITE_URL}/sobre-nosotros` },
+        author: { '@type': 'Organization', name: post.author || 'YoControlo', url: new URL(localizedPath('/sobre-nosotros', locale), PUBLIC_SITE_URL).href },
         publisher: { '@type': 'Organization', name: 'YoControlo', url: PUBLIC_SITE_URL },
       },
       {
         '@type': 'BreadcrumbList', itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'YoControlo', item: PUBLIC_SITE_URL },
-          { '@type': 'ListItem', position: 2, name: 'Blog', item: `${PUBLIC_SITE_URL}/blog` },
+          { '@type': 'ListItem', position: 1, name: 'YoControlo', item: new URL(localizedPath('/', locale), PUBLIC_SITE_URL).href },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL(localizedPath('/blog', locale), PUBLIC_SITE_URL).href },
           { '@type': 'ListItem', position: 3, name: title, item: url },
         ],
       },
