@@ -14,11 +14,13 @@ La versión 1.0.0 estrena el sistema **Gato Custodio**:
 
 Los SVG de marca viven en `public/brand/`. La web incluye modos claro y oscuro, navegación responsive, preferencias de movimiento reducido y experiencia de cookies accesible.
 
-## Idiomas
+## Idiomas y SEO
 
-La interfaz pública está disponible en español e inglés. En la primera visita, el servidor utiliza `Accept-Language` para elegir español cuando el navegador prefiere `es` e inglés cuando prefiere `en`. Cualquier idioma no soportado utiliza inglés como alternativa segura.
+Cada idioma tiene una URL estable: español en las rutas existentes e inglés bajo `/en` (por ejemplo `/en/precios`). El contenido ya no depende de cookies ni de `Accept-Language`. Las URLs españolas publicadas se conservan, sin migraciones ni redirecciones automáticas por navegador. El selector mantiene página, consulta y fragmento al cambiar idioma.
 
-El desplegable de idiomas del encabezado muestra todas las opciones disponibles, identifica el idioma activo y guarda la elección durante un año en la cookie esencial `yocontrolo-locale`. La cookie elegida siempre prevalece sobre el idioma del navegador y se aplica también al contenido, metadatos, páginas legales y preferencias de cookies.
+Cada página incluye canonical propio, hreflang `es`, `en` y `x-default`, título, descripción y metadatos sociales. El sitemap enumera ambas versiones y solo usa fechas conocidas, sin renovar artificialmente `lastModified`. Organization, WebSite, SoftwareApplication y BlogPosting describen entidades y contenido reales sin valoraciones inventadas.
+
+Las páginas `/control-de-gastos`, `/gastos-compartidos` y `/pagos-recurrentes` explican casos distintos del producto. Se enlazan desde el pie y entre sí. `robots.txt` permite los rastreadores de búsqueda de OpenAI y Anthropic; `/llms.txt` es un índice complementario, sin garantía de adopción o posicionamiento. Deben comprobarse también las reglas del firewall/CDN; robots no elimina bloqueos de infraestructura.
 
 ## Rutas
 
@@ -96,8 +98,12 @@ Dependabot revisa semanalmente npm y GitHub Actions. Las versiones menores y par
 
 ## Privacidad y analítica
 
-Google Analytics solo se carga tras consentimiento explícito. La preferencia se puede revisar desde el botón de cookies. Los textos legales describen el funcionamiento actual con autenticación, API y almacenamiento en servidor; deben someterse a revisión jurídica antes de una publicación comercial definitiva.
+Google Analytics 4 solo se carga tras consentimiento explícito. En producción se detectó el ID público `G-WZH79B3HEX`; conservar `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` en Vercel. La carga respeta el consentimiento y al retirarlo se desactiva la etiqueta y se eliminan cookies GA accesibles. Se registran `page_view` en navegación, `open_app`, `contact_click` y `outbound_click`. No se envían consultas/fragments de URL, textos de enlaces ni direcciones de correo en estos eventos.
+
+En GA4, desactivar en Medición mejorada → Vistas de página la opción de cambios de página basados en eventos de historial, ya que la web emite sus propias vistas para la navegación de Next.js. Revisar también eventos automáticos de clic saliente/formularios si se desea limitar la recogida a los eventos definidos aquí. Marcar `open_app` como evento clave mide acceso a la app, **no** registros completados; estos requieren instrumentación propia en la aplicación autenticada. La atribución de campañas necesita una configuración específica si se van a usar UTM, pues estas URLs se omiten deliberadamente de los eventos manuales.
+
+Search Console ya tiene verificación en la web. Tras publicar, enviar `https://www.yocontrolo.net/sitemap.xml`, inspeccionar una página ES y su equivalente EN, y comprobar indexación. La propiedad, permisos de GA/Search Console, tráfico real y eventos recibidos requieren acceso a esas cuentas; la presencia de la etiqueta no demuestra recepción de datos. La preferencia se puede revisar desde el botón de cookies. Los textos legales describen el funcionamiento actual con autenticación, API y almacenamiento en servidor; deben someterse a revisión jurídica antes de una publicación comercial definitiva.
 
 ## Versión
 
-Versión actual: **1.2.0**. Consulta [CHANGELOG.md](./CHANGELOG.md) para conocer el alcance del rediseño.
+Versión actual: **1.3.0**. Consulta [CHANGELOG.md](./CHANGELOG.md) para conocer el alcance del rediseño.

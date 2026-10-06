@@ -1,5 +1,12 @@
 # Historial de cambios
 
+## 1.3.0 — 2026-10-06
+
+- Corregidos canonical y metadatos por página; separadas las traducciones inglesas bajo `/en` con hreflang y sitemap bilingüe.
+- Añadidas páginas para control de gastos, gastos compartidos y pagos recurrentes.
+- Añadidas entidades estructuradas e índice llms.txt; explicitado acceso de rastreadores de búsqueda de OpenAI y Anthropic.
+- Mejorada la analítica de navegación y clics, con retirada de consentimiento y desactivación de GA.
+
 ## 1.2.1 — 2026-09-28
 
 ### Cuentas centralizadas y automatización

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from './LocalizedLink';
 import { ArrowLeft, ArrowRight, Clock, Check, Coffee, ShoppingBag, Repeat2 } from 'lucide-react';
 import SpendingCalculator from './SpendingCalculator';
 import './spending-guide.css';
