@@ -107,3 +107,7 @@ Search Console ya tiene verificación en la web. Tras publicar, enviar `https://
 ## Versión
 
 Versión actual: **1.3.0**. Consulta [CHANGELOG.md](./CHANGELOG.md) para conocer el alcance del rediseño.
+
+## Dependencias de lint
+
+Se sustituye únicamente `fast-glob` dentro de `@next/eslint-plugin-next` por el alias npm `tinyglobby@0.2.17`. El plugin usa solo `globSync` con `onlyDirectories`, una API compatible; las pruebas cubren rutas literales, patrones con llaves, listas de raíces y exclusión de archivos. Esto elimina la cadena `fast-glob → micromatch → braces`, afectada por GHSA-vfj7-8cjw-p6xm sin parche publicado. No se omiten dependencias de desarrollo ni se añaden excepciones a la auditoría. Al actualizar el plugin, comprobar de nuevo sus imports y esta prueba de compatibilidad.

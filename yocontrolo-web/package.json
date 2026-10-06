@@ -10,7 +10,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test scripts/verify-brand-system.mjs scripts/verify-delivery-config.mjs",
+    "test": "node --test scripts/verify-brand-system.mjs scripts/verify-delivery-config.mjs scripts/verify-lint-resolver.mjs",
     "test:smoke": "node scripts/smoke-production.mjs",
     "test:deployment": "node scripts/verify-deployment.mjs",
     "verify": "npm run test && npm run lint && npm run build && npm run test:smoke"
@@ -31,5 +31,10 @@
     "eslint-config-next": "^16.3.1",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@next/eslint-plugin-next": {
+      "fast-glob": "npm:tinyglobby@0.2.17"
+    }
   }
 }
