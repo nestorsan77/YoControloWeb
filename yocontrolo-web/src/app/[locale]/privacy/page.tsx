@@ -1,17 +1,21 @@
+import { pageMetadata } from '@/app/seo';
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from '@/app/components/LocalizedLink';
 import { Cookie, Database, FileText, LockKeyhole, Mail, Server, ShieldCheck, UserRoundCheck } from 'lucide-react';
-import PageHero from '../components/PageHero';
-import { getLocale } from '../i18n.server';
+import PageHero from '@/app/components/PageHero';
+import { getLocale } from '@/app/i18n.server';
 
-export async function generateMetadata(): Promise<Metadata> { const locale = await getLocale(); return locale === 'es' ? { title: 'Política de privacidad', description: 'Información sobre los datos que trata YoControlo, para qué se utilizan y cómo ejercer tus derechos.' } : { title: 'Privacy policy', description: 'Information about the data YoControlo processes, why it is used and how to exercise your rights.' }; }
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const locale = await getLocale(params);
+  return pageMetadata('/privacy', locale, locale === 'es' ? 'Política de privacidad' : 'Privacy policy', locale === 'es' ? 'Información sobre los datos que trata YoControlo, para qué se utilizan y cómo ejercer tus derechos.' : 'Information about the data YoControlo processes, why it is used and how to exercise your rights.');
+}
 
 const sections = [
   ['responsable', 'Responsable'], ['datos', 'Datos tratados'], ['finalidades', 'Finalidades y bases'], ['proveedores', 'Proveedores'], ['conservacion', 'Conservación'], ['derechos', 'Tus derechos'], ['cookies', 'Cookies'], ['seguridad', 'Seguridad'],
 ];
 
-export default async function PrivacyPage() {
-  if (await getLocale() === 'en') return <EnglishPrivacyPage />;
+export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
+  if (await getLocale(params) === 'en') return <EnglishPrivacyPage />;
   return <div className="yc-page">
     <PageHero eyebrow="Privacidad sin promesas vacías" icon={ShieldCheck} title="Qué sabemos, para qué lo usamos y qué puedes decidir." description="YoControlo necesita almacenar información para sincronizar tu cuenta y prestar el servicio. Esta política explica esa realidad con claridad." />
     <div className="yc-policy-layout">

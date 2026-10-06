@@ -1,5 +1,21 @@
 # Historial de cambios
 
+## 1.3.0 — 2026-10-06
+
+- Corregidos canonical y metadatos por página; separadas las traducciones inglesas bajo `/en` con hreflang y sitemap bilingüe.
+- Añadidas páginas para control de gastos, gastos compartidos y pagos recurrentes.
+- Añadidas entidades estructuradas e índice llms.txt; explicitado acceso de rastreadores de búsqueda de OpenAI y Anthropic.
+- Mejorada la analítica de navegación y clics, con retirada de consentimiento y desactivación de GA.
+- Aplicados los parches compatibles de `brace-expansion` y `source-map-js`; eliminada la dependencia vulnerable `braces` mediante una sustitución acotada y probada del resolvedor de archivos del plugin de lint de Next.
+
+## 1.2.1 — 2026-09-28
+
+### Cuentas centralizadas y automatización
+
+- Publicado un artículo bilingüe sobre cómo reunir cuentas, tarjetas, efectivo y movimientos en una vista clara sin mezclar saldos ni conectar credenciales bancarias.
+- Explicada la automatización de Apple Wallet con Atajos para registrar pagos compatibles sin introducirlos a mano, con sus límites de asignación por cuenta y privacidad.
+- Incluida la nueva entrada en las pruebas de rutas y en la comprobación de sitemap.
+
 ## 1.2.0 — 2026-08-16
 
 ### Entrega independiente y verificable
