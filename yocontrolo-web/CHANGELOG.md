@@ -6,6 +6,7 @@
 - Añadidas páginas para control de gastos, gastos compartidos y pagos recurrentes.
 - Añadidas entidades estructuradas e índice llms.txt; explicitado acceso de rastreadores de búsqueda de OpenAI y Anthropic.
 - Mejorada la analítica de navegación y clics, con retirada de consentimiento y desactivación de GA.
+- Aplicados los parches compatibles de `brace-expansion` y `source-map-js`; conservado el bloqueo de auditoría para la vulnerabilidad sin parche de `braces` en herramientas de desarrollo.
 
 ## 1.2.1 — 2026-09-28
 

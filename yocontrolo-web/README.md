@@ -54,7 +54,7 @@ npm run build
 npm run test:smoke
 ```
 
-`npm test` protege la paleta, activos de marca, navegación, detección ES/EN con fallback inglés, contenido coherente con la arquitectura cliente-servidor, carga de analítica condicionada al consentimiento y la configuración de entrega. `npm run test:smoke` levanta la compilación real y recorre las rutas, idiomas, cookies, SEO nativo de Next.js, respuestas 404 y cabeceras de seguridad.
+`npm test` protege la paleta, activos de marca, navegación, rutas estables ES/EN independientes del navegador, contenido coherente con la arquitectura cliente-servidor, carga de analítica condicionada al consentimiento y la configuración de entrega. `npm run test:smoke` levanta la compilación real y recorre las rutas, idiomas, cookies, SEO nativo de Next.js, respuestas 404 y cabeceras de seguridad.
 
 ## CI/CD y Vercel
 
