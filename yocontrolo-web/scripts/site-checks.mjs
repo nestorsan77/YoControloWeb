@@ -10,6 +10,7 @@ const htmlRoutes = [
   '/sobre-nosotros',
   '/blog',
   '/blog/cuentas-y-tarjetas-en-un-solo-lugar',
+  '/blog/controlar-suscripciones-gastos-fijos',
   '/blog/controlar-gastos-sin-banco',
   '/blog/ahorrar-objetivos-practica',
   '/contacto',

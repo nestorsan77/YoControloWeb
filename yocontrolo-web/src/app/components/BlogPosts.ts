@@ -22,6 +22,84 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+{
+  "title": "Cómo controlar tus suscripciones y gastos fijos cada mes",
+  "titleEn": "How to track subscriptions and fixed monthly expenses",
+  "seoTitle": "Controlar suscripciones y gastos fijos: guía práctica",
+  "seoTitleEn": "Track subscriptions and fixed expenses: a practical guide",
+  "slug": "controlar-suscripciones-gastos-fijos",
+  "date": "11 de octubre, 2026",
+  "dateEn": "11 October 2026",
+  "publishedAt": "2026-10-11T00:00:00.000Z",
+  "excerpt": "Organiza tus pagos recurrentes, calcula el coste mensual y anual de tus suscripciones y revisa los gastos fijos con un ejemplo práctico en YoControlo.",
+  "excerptEn": "Organise recurring payments, calculate the monthly and annual cost of subscriptions and review fixed expenses with a practical YoControlo example.",
+  "image": "/images/blog/suscripciones-gastos-fijos-portada.webp",
+  "imageAlt": "Calendario, sobres y monedas que representan la organización de los pagos recurrentes.",
+  "imageAltEn": "A calendar, envelopes and coins representing organised recurring payments.",
+  "author": "YoControlo",
+  "readTime": "6 min",
+  "tags": [
+    "suscripciones",
+    "gastos fijos",
+    "pagos recurrentes",
+    "presupuesto mensual"
+  ],
+  "content": `
+<p>Una plataforma de series, almacenamiento en la nube, una aplicación y una cuota anual: cada cargo parece pequeño por separado. Para <strong>controlar tus suscripciones y gastos fijos</strong>, necesitas ver cuánto suman, cuándo se cobran y qué cuenta paga cada uno. No hace falta cancelar todo: empieza por distinguir lo que utilizas de lo que se renueva por costumbre.</p>
+<h2>Qué diferencia hay entre gastos fijos y pagos recurrentes</h2>
+<p>Un gasto fijo mantiene un importe relativamente estable, como el alquiler. Un pago recurrente se repite con cierta frecuencia, aunque su importe pueda variar: por ejemplo, la factura de electricidad. Las suscripciones suelen ser recurrentes, pero no todas son necesarias. Separar la frecuencia, el importe y la prioridad evita meter todos los cargos en el mismo saco.</p>
+<p>Reserva una categoría para los gastos esenciales, otra para los servicios que puedes revisar y una previsión para los pagos anuales. Así puedes organizar tu presupuesto mensual sin olvidar un cobro que solo aparece una vez al año.</p>
+<h2>1. Haz una lista de todas tus suscripciones</h2>
+<p>Revisa los movimientos de tus cuentas y tarjetas, además de los recibos y las confirmaciones de compra. Mira también el historial del último año para localizar renovaciones anuales que no aparecen en el extracto del mes actual. Por cada servicio, anota:</p>
+<ul><li>Nombre e importe del cargo.</li><li>Frecuencia: mensual, trimestral o anual.</li><li>Fecha del próximo cobro y cuenta o tarjeta utilizada.</li><li>Quién lo usa y cuándo fue la última vez.</li><li>Condiciones de renovación y plazo para solicitar la baja.</li></ul>
+<p>Si compartes una suscripción con otra persona, distingue el cargo completo de la parte que te corresponde. Puedes consultar nuestra guía de <a href="/gastos-compartidos">gastos compartidos</a> para llevar ese registro sin contar dos veces el mismo pago.</p>
+<h2>2. Calcula el coste mensual y anual</h2>
+<p>Compara todos los servicios en la misma unidad. Multiplica una cuota mensual por 12 para estimar su coste anual; divide una cuota anual entre 12 para reservar su equivalente mensual. Si es trimestral, divídela entre 3. Son equivalencias para planificar: no cambian la fecha ni el importe real del cobro.</p>
+<div class="yc-table-scroll"><table><caption>Ejemplo ilustrativo: importes ficticios, no tarifas de servicios reales</caption><thead><tr><th scope="col">Servicio</th><th scope="col">Cobro</th><th scope="col">Equivalente mensual</th><th scope="col">Coste anual</th></tr></thead><tbody><tr><th scope="row">Series</th><td>9,99 €/mes</td><td>9,99 €</td><td>119,88 €</td></tr><tr><th scope="row">Música</th><td>6,99 €/mes</td><td>6,99 €</td><td>83,88 €</td></tr><tr><th scope="row">Aplicación</th><td>12,50 €/mes</td><td>12,50 €</td><td>150,00 €</td></tr><tr><th scope="row">Almacenamiento</th><td>60,00 €/año</td><td>5,00 €</td><td>60,00 €</td></tr><tr><th scope="row">Total</th><td>Cuotas mixtas</td><td><strong>34,48 €</strong></td><td><strong>413,76 €</strong></td></tr></tbody></table></div>
+<p>El mes en que se renueva el almacenamiento tendrá un cargo de 60 €, aunque su equivalente mensual sea 5 €. Si decides prescindir de la aplicación de 12,50 €, dejarías de pagar 150 € durante doce meses completos, suponiendo que no haya permanencia ni otras condiciones. Es un ejemplo de cálculo, no una promesa de ahorro.</p>
+<h2>3. Revisa qué servicios merecen seguir</h2>
+<p>Para cada suscripción, pregúntate si la usas, si duplica otra y si encaja en tu presupuesto. Un servicio que utilizas cada día puede tener más sentido que uno barato que nunca abres. También puedes revisar la modalidad contratada o pausar un servicio si el proveedor lo permite.</p>
+<p>Antes de solicitar una baja, comprueba sus condiciones y conserva la confirmación del proveedor. Borrar una aplicación o eliminar un pago de tu registro personal no cancela el contrato. Apunta la fecha efectiva de finalización para comprobar después que los cargos coinciden con lo acordado.</p>
+<h2>4. Lleva el control de pagos recurrentes con YoControlo</h2>
+<p>En YoControlo puedes organizar tus cuentas, registrar ingresos y gastos y llevar tus <a href="/pagos-recurrentes">pagos recurrentes</a> junto al resto de movimientos. Asocia cada gasto a la cuenta correcta y utiliza categorías coherentes para comparar lo que esperabas pagar con lo que se ha cobrado realmente.</p>
+<p>La aplicación no cancela suscripciones ni mueve tu dinero: te ayuda a mantener el registro. Puedes añadir los movimientos o importar un extracto, sin entregar credenciales bancarias. Para ver los pagos de distintas tarjetas juntos, lee cómo <a href="/blog/cuentas-y-tarjetas-en-un-solo-lugar">centralizar tus cuentas y tarjetas</a>.</p>
+<h2>5. Mantén una revisión mensual breve</h2>
+<p>Al cerrar el mes, compara tu lista con los movimientos, revisa cambios de precio y comprueba qué se renovará a continuación. Anota las decisiones que hayas tomado: mantener, cambiar o cancelar. Incluye también alquiler, suministros y otros gastos habituales para que el total no se limite a las plataformas digitales.</p>
+<p>Para ampliar el contexto del presupuesto, consulta la <a href="https://www.finanzasparatodos.es/el-presupuesto-la-clave-para-controlar-tus-finanzas" target="_blank" rel="noopener noreferrer">guía de presupuesto de Finanzas para Todos</a>. Registrar entradas y salidas es la base para decidir qué puedes ajustar.</p>
+<h2>Preguntas frecuentes sobre suscripciones</h2>
+<h3>¿Cómo encuentro suscripciones que he olvidado?</h3><p>Busca cargos repetidos en todas tus cuentas y tarjetas y revisa los correos de renovación. Comprueba también los pagos anuales: una lista basada solo en el último mes puede dejarlos fuera.</p>
+<h3>¿Una suscripción anual cuenta como gasto mensual?</h3><p>Para planificar puedes repartir su coste entre doce meses. En el registro del dinero realmente pagado, anota el cargo completo cuando se cobre; no registres además doce pagos ficticios, porque duplicarías el gasto.</p>
+<h3>¿YoControlo cancela las suscripciones por mí?</h3><p>No. La baja se solicita al proveedor siguiendo sus condiciones. YoControlo te ayuda a organizar y revisar la información de tus gastos.</p>
+<p><strong>Empieza por tu próximo cobro:</strong> crea la cuenta correspondiente, registra el servicio y revisa su frecuencia. <a href="https://app.yocontrolo.net" target="_blank" rel="noopener noreferrer">Abre YoControlo y organiza tus gastos</a>, o explora la guía de <a href="/control-de-gastos">control de gastos</a> para continuar.</p>
+`,
+  "contentEn": `
+<p>A streaming service, cloud storage, an app and an annual membership: each charge may look small on its own. To <strong>track subscriptions and fixed monthly expenses</strong>, you need to know the total, the renewal dates and which account pays each bill. Start by separating services you use from subscriptions that renew out of habit.</p>
+<h2>Fixed expenses and recurring payments are different</h2>
+<p>A fixed expense has a relatively stable amount, such as rent. A recurring payment repeats at regular intervals but can change in amount, such as an electricity bill. Subscriptions are usually recurring, but they are not all essential. Record frequency, amount and priority separately.</p>
+<p>Keep essential bills, optional services and annual renewals visible in your monthly budget. An annual charge still matters even if it does not appear in this month's statement.</p>
+<h2>1. List every subscription</h2>
+<p>Review transactions across all your accounts and cards, together with receipts and purchase confirmations. Look back over a full year to find annual renewals. For each service, record its name, amount, billing frequency, next payment date, payment account, who uses it and the cancellation terms.</p>
+<p>For a shared subscription, distinguish the full charge from your own share. Our <a href="/en/gastos-compartidos">shared expenses guide</a> explains how to keep that distinction without counting the same payment twice.</p>
+<h2>2. Compare monthly and annual costs</h2>
+<p>Multiply a monthly fee by 12 to estimate its annual cost. Divide an annual fee by 12 to plan its monthly equivalent, or a quarterly fee by 3. These are planning equivalents: they do not change the actual amount or date of the charge.</p>
+<div class="yc-table-scroll"><table><caption>Illustrative example: fictional amounts, not actual service prices</caption><thead><tr><th scope="col">Service</th><th scope="col">Billing</th><th scope="col">Monthly equivalent</th><th scope="col">Annual cost</th></tr></thead><tbody><tr><th scope="row">Streaming</th><td>€9.99/month</td><td>€9.99</td><td>€119.88</td></tr><tr><th scope="row">Music</th><td>€6.99/month</td><td>€6.99</td><td>€83.88</td></tr><tr><th scope="row">App</th><td>€12.50/month</td><td>€12.50</td><td>€150.00</td></tr><tr><th scope="row">Storage</th><td>€60.00/year</td><td>€5.00</td><td>€60.00</td></tr><tr><th scope="row">Total</th><td>Mixed billing</td><td><strong>€34.48</strong></td><td><strong>€413.76</strong></td></tr></tbody></table></div>
+<p>The storage renewal month still includes a €60 charge, despite its €5 monthly equivalent. Removing the €12.50 app would avoid €150 over twelve full months, assuming no minimum term or other conditions apply. This is a calculation example, not a savings guarantee.</p>
+<h2>3. Decide what to keep</h2>
+<p>Check whether you use each service, whether it duplicates another and whether it fits your budget. A service used daily may be more useful than a cheaper one you never open. Review your plan or pause the subscription if the provider allows it.</p>
+<p>Before cancelling, check the terms and keep the provider's confirmation. Deleting an app or removing an entry from your personal record does not cancel a contract. Note the effective end date so you can compare future charges with the agreed terms.</p>
+<h2>4. Track recurring expenses with YoControlo</h2>
+<p>YoControlo lets you organise accounts, record income and expenses and track <a href="/en/pagos-recurrentes">recurring payments</a> alongside other transactions. Assign each expense to the right account and use consistent categories to compare expected bills with actual charges.</p>
+<p>The app does not cancel subscriptions or move money. You can enter transactions or import statements without handing over bank credentials. Read how to <a href="/en/blog/cuentas-y-tarjetas-en-un-solo-lugar">bring accounts and cards into one overview</a> if payments are spread across several cards.</p>
+<h2>5. Keep a short monthly review</h2>
+<p>Compare your list with transactions, check price changes and review upcoming renewals. Record decisions to keep, change or cancel services. Include rent, utilities and other regular bills so your overview extends beyond digital subscriptions.</p>
+<p>For budgeting background, see the <a href="https://www.finanzasparatodos.es/el-presupuesto-la-clave-para-controlar-tus-finanzas" target="_blank" rel="noopener noreferrer">Finanzas para Todos budgeting guide (Spanish)</a>. Recording income and expenses gives you the information needed to decide what to adjust.</p>
+<h2>Frequently asked questions</h2>
+<h3>How do I find forgotten subscriptions?</h3><p>Look for repeated charges across all your accounts and cards and check renewal emails. Include annual charges: a list based only on the latest month can miss them.</p>
+<h3>Should I record an annual subscription as a monthly expense?</h3><p>You can divide its cost by twelve for planning. For actual spending, record the full charge when paid; do not also record twelve fictional payments, which would count it twice.</p>
+<h3>Does YoControlo cancel subscriptions for me?</h3><p>No. Request cancellation directly from the provider under its terms. YoControlo helps you organise and review your expense information.</p>
+<p><strong>Start with your next renewal:</strong> create the payment account, record the service and review its billing frequency. <a href="https://app.yocontrolo.net" target="_blank" rel="noopener noreferrer">Open YoControlo and organise your expenses</a>, or continue with our <a href="/en/control-de-gastos">expense tracking guide</a>.</p>
+`
+},
   {
     title: 'Tus cuentas y tarjetas, en una sola visión de tu dinero',
     titleEn: 'All your accounts and cards in one clear view of your money',
@@ -33,9 +111,9 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2026-09-28T00:00:00.000Z',
     excerpt: 'Reúne los movimientos de tus cuentas, tarjetas y efectivo para entender mejor cuánto tienes y en qué gastas. Y con Apple Wallet y Atajos, registra automáticamente los pagos compatibles sin apuntarlos a mano.',
     excerptEn: 'Bring your accounts, cards and cash transactions together to see what you have and where it goes. With Apple Wallet and Shortcuts, eligible payments can be recorded automatically—no manual entry.',
-    image: '/images/blog/gastos-hormiga-portada.webp',
-    imageAlt: 'Varias tarjetas de pago y monedas que representan los distintos medios de pago de una persona.',
-    imageAltEn: 'Several payment cards and coins representing the different ways one person pays.',
+    image: '/images/blog/cuentas-y-tarjetas-portada.webp',
+    imageAlt: 'Tarjetas de pago, monedas y un registro central que representan una visión conjunta de las cuentas.',
+    imageAltEn: 'Payment cards, coins and a central ledger representing a combined view of personal accounts.',
     author: 'YoControlo',
     readTime: '6 min',
     tags: ['cuentas', 'tarjetas', 'gastos', 'Apple Wallet', 'automatización'],

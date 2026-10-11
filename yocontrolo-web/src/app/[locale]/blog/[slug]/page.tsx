@@ -67,7 +67,15 @@ export default async function BlogArticle({ params }: Props) {
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}/>
     {post.layout === 'spending-guide' ? <SpendingGuide locale={locale}/> : <article className="yc-article">
-      <header className="yc-article-header"><Link href="/blog"><ArrowLeft/>{locale === 'es' ? 'Volver al blog' : 'Back to blog'}</Link><span className="yc-eyebrow">{locale === 'es' ? 'Guía YoControlo' : 'YoControlo guide'}</span><h1>{title}</h1><p>{excerpt}</p><div><span>{locale === 'en' ? post.dateEn || post.date : post.date}</span><span><Clock/>{post.readTime || '5 min'}</span></div></header>
+      <header className="yc-article-header">
+        <nav className="yc-article-navigation" aria-label="Blog">
+          <Link href="/blog"><ArrowLeft/>{locale === 'es' ? 'Volver al blog' : 'Back to blog'}</Link>
+        </nav>
+        <span className="yc-eyebrow">{locale === 'es' ? 'Guía YoControlo' : 'YoControlo guide'}</span>
+        <h1>{title}</h1>
+        <p>{excerpt}</p>
+        <div><span>{locale === 'en' ? post.dateEn || post.date : post.date}</span><span><Clock/>{post.readTime || '5 min'}</span></div>
+      </header>
       {post.image && <div className="yc-article-image"><Image src={post.image} alt={locale === 'en' ? post.imageAltEn || post.imageAlt || '' : post.imageAlt || ''} fill priority sizes="(max-width: 1000px) 100vw, 1000px"/></div>}
       {post.tags && <div className="yc-article-tags">{post.tags.map(tag => <span key={tag}><Tag/>{tag}</span>)}</div>}
       <div className="yc-article-content" dangerouslySetInnerHTML={{ __html: content || '' }}/>
