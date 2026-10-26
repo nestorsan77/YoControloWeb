@@ -69,10 +69,15 @@ export async function verifySite(baseUrl) {
   const sitemapResponse = await request(normalizedBaseUrl, '/sitemap.xml');
   assert.equal(sitemapResponse.status, 200);
   const sitemap = await sitemapResponse.text();
-  assert.ok(!sitemap.includes('https://www.yocontrolo.net/es/'), 'Sitemap must not list internal Spanish aliases');
+  const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]));
+  assert.ok(sitemapUrls.length > 0, 'Sitemap must contain page locations');
+  for (const url of sitemapUrls) {
+    assert.equal(url.origin, 'https://www.yocontrolo.net', 'Sitemap must use the public canonical origin');
+    assert.ok(url.pathname !== '/es' && !url.pathname.startsWith('/es/'), 'Sitemap must not list internal Spanish aliases');
+  }
   for (const path of htmlRoutes) {
-    const canonicalUrl = new URL(path, 'https://www.yocontrolo.net').toString().replace(/\/$/, path === '/' ? '' : '/');
-    assert.ok(sitemap.includes(canonicalUrl), `Sitemap is missing ${canonicalUrl}`);
+    const canonicalUrl = new URL(path, 'https://www.yocontrolo.net').href;
+    assert.ok(sitemapUrls.some(url => url.href === canonicalUrl), `Sitemap is missing ${canonicalUrl}`);
   }
 
   const llms = await request(normalizedBaseUrl, '/llms.txt');
