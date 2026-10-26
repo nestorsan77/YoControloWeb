@@ -1,5 +1,15 @@
 # Historial de cambios
 
+## 1.3.1 — 2026-10-26
+
+- Nueva guía ES/EN para cuadrar el saldo al importar extractos, con ejemplo numérico, portada propia y enlaces a guías relacionadas. Actualizado el sitemap del blog.
+- Corregido contraste de marca, textos secundarios, números, enlaces, cookies y pie; ajustados también calendario, etiquetas de precios y botones legales en tema oscuro.
+- Añadidas pruebas Playwright + axe en escritorio/móvil, claro/oscuro, y comprobaciones de contraste de tokens. Las tablas con desplazamiento pueden recibir foco mediante teclado.
+- Los nombres accesibles de la marca y del selector de idioma incluyen sus textos visibles para compatibilidad con control por voz.
+- Verificada la integración GA4 existente, sin etiquetas duplicadas: pruebas de aceptación, navegación, retirada y reactivación con tráfico de Google interceptado.
+- Documentados los tres casos reales de Search Console y reforzadas las pruebas de canónicas, idiomas e indexabilidad. La decisión de indexación sigue dependiendo de Google.
+- Actualizados Next.js y su configuración de lint a 16.4.3 y Zod a una versión corregida dentro de su rango compatible, sin excepciones a la auditoría npm.
+
 ## 1.3.0 — 2026-10-06
 
 - Corregidos canonical y metadatos por página; separadas las traducciones inglesas bajo `/en` con hreflang y sitemap bilingüe.

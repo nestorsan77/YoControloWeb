@@ -9,6 +9,7 @@ const htmlRoutes = [
   '/pagos-recurrentes',
   '/sobre-nosotros',
   '/blog',
+  '/blog/cuadrar-saldo-importar-extracto-bancario',
   '/blog/cuentas-y-tarjetas-en-un-solo-lugar',
   '/blog/controlar-suscripciones-gastos-fijos',
   '/blog/controlar-gastos-sin-banco',
@@ -48,7 +49,9 @@ export async function verifySite(baseUrl) {
       assert.equal(response.status, 200, localized);
       assert.ok(html.includes(`lang="${language}"`), `${localized} has the wrong language`);
       const canonical = new URL(localized, 'https://www.yocontrolo.net').href.replace(/\/$/, '');
-      assert.ok(html.includes(`rel="canonical" href="${canonical}"`) || html.includes(`rel="canonical" href="${canonical}/"`), `${localized} has an incorrect canonical`);
+      const canonicals = [...html.matchAll(/<link rel="canonical" href="([^"]+)"/g)].map(match => match[1].replace(/\/$/, ''));
+      assert.deepEqual(canonicals, [canonical], `${localized} must have one self-referencing canonical`);
+      assert.doesNotMatch(html, /<meta name="robots" content="[^"]*noindex/i, `${localized} must allow indexing`);
       assert.match(html, /hreflang="es"/i);
       assert.match(html, /hreflang="en"/i);
       assert.match(html, /hreflang="x-default"/i);
@@ -66,9 +69,15 @@ export async function verifySite(baseUrl) {
   const sitemapResponse = await request(normalizedBaseUrl, '/sitemap.xml');
   assert.equal(sitemapResponse.status, 200);
   const sitemap = await sitemapResponse.text();
+  const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]));
+  assert.ok(sitemapUrls.length > 0, 'Sitemap must contain page locations');
+  for (const url of sitemapUrls) {
+    assert.equal(url.origin, 'https://www.yocontrolo.net', 'Sitemap must use the public canonical origin');
+    assert.ok(url.pathname !== '/es' && !url.pathname.startsWith('/es/'), 'Sitemap must not list internal Spanish aliases');
+  }
   for (const path of htmlRoutes) {
-    const canonicalUrl = new URL(path, 'https://www.yocontrolo.net').toString().replace(/\/$/, path === '/' ? '' : '/');
-    assert.ok(sitemap.includes(canonicalUrl), `Sitemap is missing ${canonicalUrl}`);
+    const canonicalUrl = new URL(path, 'https://www.yocontrolo.net').href;
+    assert.ok(sitemapUrls.some(url => url.href === canonicalUrl), `Sitemap is missing ${canonicalUrl}`);
   }
 
   const llms = await request(normalizedBaseUrl, '/llms.txt');
