@@ -11,7 +11,7 @@ type BrandProps = {
 export default function Brand({ compact = false, inverse = false, locale = 'es' }: BrandProps) {
   const messages = commonMessages[locale];
   return (
-    <Link href="/" className={`yc-brand ${inverse ? 'is-inverse' : ''}`} aria-label={`YoControlo, ${messages.home}`}>
+    <Link href="/" className={`yc-brand ${inverse ? 'is-inverse' : ''}`} aria-label={compact ? `YoControlo, ${messages.home}` : undefined}>
       <Image src="/brand/gato-custodio-app.svg" width={48} height={48} alt="" priority />
       {!compact && (
         <span className="yc-brand-copy">

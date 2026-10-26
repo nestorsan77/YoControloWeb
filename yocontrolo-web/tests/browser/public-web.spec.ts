@@ -4,7 +4,7 @@ import { expect, test, type Page } from '@playwright/test';
 const articlePath = '/blog/cuadrar-saldo-importar-extracto-bancario';
 
 async function expectAccessible(page: Page, selector?: string) {
-  let scan = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']);
+  let scan = new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']);
   if (selector) scan = scan.include(selector);
   const { violations } = await scan.analyze();
   expect(violations.map(({ id, nodes }) => ({ id, nodes: nodes.map(node => ({ target: node.target, summary: node.failureSummary })) }))).toEqual([]);

@@ -80,7 +80,7 @@ export default function NavMenu({ locale }: { locale: Locale }) {
         </div>
         <div className="yc-nav-tools">
           <div className="yc-language-control" ref={languageControlRef}>
-            <button type="button" className="yc-language-switch" onClick={() => { setLanguageOpen((value) => !value); setOpen(false); }} aria-label={messages.chooseLanguage} aria-haspopup="menu" aria-expanded={languageOpen}>
+            <button type="button" className="yc-language-switch" onClick={() => { setLanguageOpen((value) => !value); setOpen(false); }} aria-label={`${messages.chooseLanguage}: ${messages.languageShort}`} aria-haspopup="menu" aria-expanded={languageOpen}>
               <Globe2 /><span>{messages.languageShort}</span><ChevronDown className={languageOpen ? 'is-open' : ''} />
             </button>
             {languageOpen && <div className="yc-language-menu" role="menu" aria-label={messages.chooseLanguage}>
