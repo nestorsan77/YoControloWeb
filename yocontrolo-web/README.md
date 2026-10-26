@@ -52,9 +52,15 @@ npm test
 npm run lint
 npm run build
 npm run test:smoke
+npx playwright install chromium
+npm run test:browser
 ```
 
 `npm test` protege la paleta, activos de marca, navegación, rutas estables ES/EN independientes del navegador, contenido coherente con la arquitectura cliente-servidor, carga de analítica condicionada al consentimiento y la configuración de entrega. `npm run test:smoke` levanta la compilación real y recorre las rutas, idiomas, cookies, SEO nativo de Next.js, respuestas 404 y cabeceras de seguridad.
+
+Las pruebas Playwright + axe comprueban WCAG A/AA automatizable (incluido contraste) en escritorio y viewport móvil, ambos temas, cookies y páginas representativas. Esto no sustituye una auditoría manual con lectores de pantalla ni equivale por sí solo a una puntuación PageSpeed. La compilación debe incluir un ID GA válido para probar consentimiento; CI usa `G-CITEST0001` y los tests interceptan Google para no enviar datos reales. Vercel conserva su ID de producción independiente. Se verifican ausencia de solicitudes antes del consentimiento, una vista por navegación, exclusión de consultas/fragments, retirada, borrado de cookies y reactivación sin cargar otra etiqueta.
+
+El verde de marca `#58C6A5` se conserva para superficies y adornos. El texto usa `--yc-mint-dark` específico de cada tema; no se debe reutilizar el color decorativo para texto pequeño sobre fondo claro. Los números de tarjetas y los pies de página mantienen contraste AA. Las tablas anchas de artículos son accesibles con teclado.
 
 ## CI/CD y Vercel
 
@@ -106,7 +112,15 @@ Search Console ya tiene verificación en la web. Tras publicar, enviar `https://
 
 ## Versión
 
-Versión actual: **1.3.0**. Consulta [CHANGELOG.md](./CHANGELOG.md) para conocer el alcance del rediseño.
+Versión actual: **1.3.1**. Consulta [CHANGELOG.md](./CHANGELOG.md) para conocer el alcance del rediseño.
+
+### Diagnóstico de Search Console — 26 de octubre de 2026
+
+El informe consultado estaba actualizado al 23 de octubre: 23 URLs indexadas y 3 excluidas. Dos artículos (`/blog/ahorrar-objetivos-practica` y `/blog/controlar-gastos-sin-banco`) figuraban como «Rastreada: actualmente sin indexar», con rastreos del 13 y 12 de octubre. No significa por sí solo un error HTTP ni un bloqueo de robots. Se refuerzan los enlaces internos desde los artículos, incluyendo la nueva guía de extractos. No se cambian sus URLs ni se simulan fechas de actualización del contenido antiguo.
+
+La tercera URL es `/en/terms`: Google escogió `/terms` como canónica en su rastreo del 10 de octubre. La inspección confirmó rastreo permitido, obtención correcta e indexación permitida; la canónica declarada era `/en/terms`. La respuesta pública actual contiene texto inglés, canónica propia y alternativas ES/EN recíprocas. No se fuerza una redirección entre traducciones ni se elimina una de ellas. Los smoke tests ahora exigen una única canónica propia y ausencia de `noindex` en cada ruta publicada.
+
+Tras desplegar esta versión, volver a inspeccionar las tres URLs, probar la versión publicada y solicitar indexación cuando proceda. No pulsar «Validar corrección» como sustituto de revisar el caso concreto. Google decide si indexa y qué canónica selecciona; ninguna modificación garantiza su inclusión ni un plazo. Referencias: [canónicas](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls), [traducciones](https://developers.google.com/search/docs/specialty/international/localized-versions).
 
 ## Dependencias de lint
 

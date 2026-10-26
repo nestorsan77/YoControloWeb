@@ -43,6 +43,10 @@ export default async function BlogArticle({ params }: Props) {
   const title = locale === 'en' ? post.titleEn || post.title : post.title;
   const excerpt = locale === 'en' ? post.excerptEn || post.excerpt : post.excerpt;
   const content = locale === 'en' ? post.contentEn || post.content : post.content;
+  // A horizontally scrollable table must also be reachable without a touchscreen.
+  const articleContent = content?.replaceAll('<div class="yc-table-scroll">',
+    `<div class="yc-table-scroll" tabindex="0" role="region" aria-label="${locale === 'es' ? 'Tabla con desplazamiento horizontal' : 'Horizontally scrollable table'}">`)
+    .replaceAll('<pre class=', '<pre tabindex="0" class=');
   const url = new URL(localizedPath(`/blog/${post.slug}`, locale), PUBLIC_SITE_URL).href;
   const structuredData = {
     '@context': 'https://schema.org',
@@ -64,6 +68,7 @@ export default async function BlogArticle({ params }: Props) {
       },
     ],
   };
+  const relatedPosts = [blogPosts[0], ...blogPosts.slice(-2)].filter(item => item.slug !== slug);
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }}/>
     {post.layout === 'spending-guide' ? <SpendingGuide locale={locale}/> : <article className="yc-article">
@@ -78,7 +83,14 @@ export default async function BlogArticle({ params }: Props) {
       </header>
       {post.image && <div className="yc-article-image"><Image src={post.image} alt={locale === 'en' ? post.imageAltEn || post.imageAlt || '' : post.imageAlt || ''} fill priority sizes="(max-width: 1000px) 100vw, 1000px"/></div>}
       {post.tags && <div className="yc-article-tags">{post.tags.map(tag => <span key={tag}><Tag/>{tag}</span>)}</div>}
-      <div className="yc-article-content" dangerouslySetInnerHTML={{ __html: content || '' }}/>
+      <div className="yc-article-content" dangerouslySetInnerHTML={{ __html: articleContent || '' }}/>
     </article>}
+    <section className="yc-related-articles" aria-labelledby="related-heading">
+      <h2 id="related-heading">{locale === 'es' ? 'Para seguir organizándote' : 'Keep building your overview'}</h2>
+      <div>{relatedPosts.map(item => <Link key={item.slug} href={`/blog/${item.slug}`}>
+        <h3>{locale === 'es' ? item.title : item.titleEn || item.title}</h3>
+        <p>{locale === 'es' ? item.excerpt : item.excerptEn || item.excerpt}</p>
+      </Link>)}</div>
+    </section>
   </>;
 }

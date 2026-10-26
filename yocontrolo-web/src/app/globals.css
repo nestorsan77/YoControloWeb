@@ -4,7 +4,7 @@
   --yc-ink: #17212b;
   --yc-ink-soft: #273746;
   --yc-mint: #58c6a5;
-  --yc-mint-dark: #2d9f7d;
+  --yc-mint-dark: #17664f;
   --yc-mint-soft: #e2f5ef;
   --yc-gold: #f2b84b;
   --yc-gold-soft: #fff3d9;
@@ -13,7 +13,7 @@
   --yc-cream: #f7f3ea;
   --yc-paper: #fffdf8;
   --yc-surface: #ffffff;
-  --yc-muted: #66717b;
+  --yc-muted: #56636c;
   --yc-border: #ded9cf;
   --yc-shadow: 0 24px 70px rgba(23, 33, 43, .12);
   --background: var(--yc-cream);
@@ -22,6 +22,7 @@
 }
 
 html.dark {
+  --yc-mint-dark: #74dabb;
   --yc-ink: #f7f3ea;
   --yc-ink-soft: #dce5e2;
   --yc-mint-soft: #193f3b;
@@ -52,9 +53,10 @@ a { color: inherit; }
 .yc-brand img { width: 46px; height: 46px; border-radius: 13px; }
 .yc-brand-copy { display: grid; line-height: 1; }
 .yc-brand-copy strong { font-size: 1.36rem; font-weight: 900; letter-spacing: -.05em; color: var(--yc-ink); }
-.yc-brand-copy strong span { color: var(--yc-mint); }
+.yc-brand-copy strong span { color: var(--yc-mint-dark); }
 .yc-brand-copy small { margin-top: 6px; font-size: .62rem; color: var(--yc-muted); letter-spacing: .01em; }
 .yc-brand.is-inverse .yc-brand-copy strong { color: #f7f3ea; }
+.yc-brand.is-inverse .yc-brand-copy strong span { color: #58c6a5; }
 .yc-brand.is-inverse .yc-brand-copy small { color: #aeb8bd; }
 .yc-site-links { margin-left: auto; display: flex; align-items: center; gap: 5px; }
 .yc-site-links > a:not(.yc-button) { padding: 11px 13px; color: var(--yc-muted); border-radius: 12px; text-decoration: none; font-size: .88rem; font-weight: 700; transition: .2s ease; }
@@ -102,7 +104,7 @@ a { color: inherit; }
 .yc-hero::after { content: ""; position: absolute; width: 360px; height: 360px; right: -170px; bottom: -210px; border: 72px solid color-mix(in srgb, var(--yc-gold) 22%, transparent); border-radius: 50%; }
 .yc-hero-copy { position: relative; z-index: 2; }
 .yc-hero h1 { max-width: 760px; margin: 22px 0 24px; font-size: clamp(3.5rem, 6.3vw, 6.8rem); line-height: .92; letter-spacing: -.072em; font-weight: 900; }
-.yc-hero h1 em { color: var(--yc-mint); font-style: normal; }
+.yc-hero h1 em { color: var(--yc-mint-dark); font-style: normal; }
 .yc-hero-copy > p { max-width: 660px; margin: 0 0 30px; color: var(--yc-muted); font-size: clamp(1.08rem, 1.8vw, 1.28rem); line-height: 1.65; }
 .yc-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .yc-hero-points { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 15px; color: var(--yc-muted); font-size: .8rem; font-weight: 700; }
@@ -235,3 +237,21 @@ body .border-gray-200, body .dark\:border-gray-700 { border-color: var(--yc-bord
 .yc-topic-page .yc-inline-cta { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
 
 .yc-article-content .yc-table-scroll { max-width: 100%; overflow-x: auto; }.yc-article-content caption { text-align: left; margin-bottom: 12px; font-weight: 800; }.yc-article-header > div { flex-wrap: wrap; }
+
+/* Fixed dark surfaces do not inherit the light theme's dark text accent. */
+.yc-feature-grid article > small, .yc-footer-bottom { color: #aeb8bd; }
+.yc-inline-cta .yc-eyebrow, .yc-support-card .yc-eyebrow { color: #58c6a5; }
+.yc-process-grid article > span { opacity: 1; }
+.yc-cookie-options input:focus-visible + i { outline: 3px solid var(--yc-ink); outline-offset: 4px; }
+.yc-calendar-row > b, .yc-pricing-card header b { color: var(--yc-ink); }
+.yc-policy-content .yc-button-primary { color: #17212b; }
+.yc-table-scroll:focus-visible, .yc-article-content pre:focus-visible { outline: 3px solid var(--yc-mint-dark); outline-offset: 4px; }
+.yc-article-content table { color: var(--yc-ink-soft); }
+
+.yc-related-articles { width: min(900px, calc(100% - 40px)); margin: 0 auto 90px; }
+.yc-related-articles > h2 { font-size: 1.65rem; letter-spacing: -.03em; }
+.yc-related-articles > div { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 16px; }
+.yc-related-articles a { padding: 24px; border: 1px solid var(--yc-border); border-radius: 22px; background: var(--yc-paper); text-decoration: none; }
+.yc-related-articles a:hover h3 { text-decoration: underline; }
+.yc-related-articles h3 { margin: 0 0 12px; font-size: 1.1rem; line-height: 1.3; color: var(--yc-mint-dark); }
+.yc-related-articles p { margin: 0; color: var(--yc-muted); font-size: .9rem; line-height: 1.6; }

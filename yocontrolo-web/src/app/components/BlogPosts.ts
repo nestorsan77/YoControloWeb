@@ -1,3 +1,5 @@
+import { balanceGuide } from '../content/balance-guide';
+
 // components/BlogPosts.ts
 export interface BlogPost {
   title: string;
@@ -22,6 +24,7 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
+balanceGuide,
 {
   "title": "Cómo controlar tus suscripciones y gastos fijos cada mes",
   "titleEn": "How to track subscriptions and fixed monthly expenses",
